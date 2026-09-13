@@ -13,7 +13,7 @@ button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh;pad
 main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-title{font-size:28px;margin:25px 0 16px}.card{background:#121b2b;border-radius:28px;padding:25px;margin:14px 0}.hero{padding:30px}.muted{color:#9ba7ba}.big{font-size:42px;font-weight:800;margin:7px 0 10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.metric{background:#121b2b;border-radius:24px;padding:22px}.metric .value{font-size:25px;font-weight:800;margin-top:7px}.green{color:#0bb56a}.red{color:#f04438}.blue{color:#2684ff}.bar{height:14px;background:#344157;border-radius:20px;overflow:hidden;margin:16px 0}.bar i{display:block;height:100%;background:#2670e8;border-radius:20px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.input,select{width:100%;background:#111a29;border:1px solid #344157;border-radius:16px;padding:16px;color:#fff;margin:7px 0 16px;outline:none}.btn{border:0;border-radius:16px;padding:15px 20px;background:#2167dc;color:#fff;font-weight:700}.btn.secondary{background:#26344b}.btn.danger{background:#c93427}.btn.small{padding:10px 13px;font-size:14px}.tabs{display:flex;background:#121b2b;border-radius:16px;padding:4px;margin-bottom:18px}.tabs button{flex:1;border:0;background:transparent;color:#fff;padding:13px;border-radius:13px}.tabs button.on{background:#1e2b41;color:#2581ff}.transaction{background:#121b2b;border-radius:22px;padding:18px;margin:10px 0}.transaction .amount{font-weight:800;font-size:19px}.search{margin-bottom:12px}.nav{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#101a2a;border-top:1px solid #465064;padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr)}.nav button{border:0;background:transparent;color:#dce2ec;font-size:12px;padding:7px 2px}.nav button span{display:block;font-size:25px;margin-bottom:3px}.nav button.on{color:#2684ff}.pill{display:inline-block;background:#1d2b43;color:#aeb9cb;padding:7px 11px;border-radius:20px;font-size:13px}.chart{height:190px;display:flex;align-items:end;gap:8px;padding-top:20px}.col{flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;height:100%}.col i{display:block;width:80%;max-width:42px;background:#2670e8;border-radius:8px 8px 0 0;min-height:3px}.col small{color:#8f9aae;margin-top:7px}.goal{margin:12px 0;padding:18px;background:#172236;border-radius:20px}.notice{background:#18273e;border-left:4px solid #2684ff;padding:13px 15px;border-radius:12px;color:#c8d1df}.empty{text-align:center;color:#8f9aae;padding:30px}.linkbtn{border:0;background:none;color:#2684ff;padding:0}
 @media(min-width:700px){main{max-width:850px;margin:auto}.top{max-width:850px;margin:auto}.nav{max-width:850px;margin:auto}}
 
-/* V1.5 polish */
+/* V1.6 polish */
 .more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .more-card{cursor:pointer;min-height:92px;display:flex;flex-direction:column;justify-content:center}
 .more-card .mi{font-size:25px;margin-bottom:7px}
@@ -39,7 +39,7 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 @media(max-width:420px){.more-grid{gap:9px}.more-card{min-height:84px}}
 
 
-/* V1.5 Accounts + Budgeting */
+/* V1.6 Accounts + Budgeting */
 .account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .account-card{position:relative;cursor:pointer}
 .account-card .account-name{font-weight:850}
@@ -61,6 +61,27 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .v15-note{font-size:12px;opacity:.62;line-height:1.45}
 @media(max-width:420px){.account-grid{grid-template-columns:1fr}.form-grid-2{grid-template-columns:1fr}}
+
+
+/* V1.6 Debt + Reports + App Lock */
+.debt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.debt-card{cursor:pointer}
+.debt-balance{font-size:21px;font-weight:900;margin-top:8px}
+.debt-meta{font-size:11px;opacity:.62;margin-top:3px}
+.report-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.report-stat{padding:14px;border-radius:14px;background:rgba(255,255,255,.045)}
+.report-stat .label{font-size:11px;opacity:.62}
+.report-stat .value{font-size:19px;font-weight:900;margin-top:5px}
+.lock-overlay{position:fixed;inset:0;z-index:10000;background:#0d0d0d;display:none;align-items:center;justify-content:center;padding:24px}
+.lock-overlay.show{display:flex}
+.lock-box{width:min(360px,100%);text-align:center}
+.pin-dots{font-size:25px;letter-spacing:8px;margin:18px 0}
+.pin-pad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.pin-key{height:58px;border-radius:15px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:inherit;font-size:20px;font-weight:800}
+.lock-error{height:20px;color:#ff9a9a;font-size:12px}
+.report-bar{margin-top:9px;height:9px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.report-bar span{display:block;height:100%;background:currentColor;border-radius:99px}
+@media(max-width:420px){.debt-grid,.report-grid{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -183,6 +204,29 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
     <div id="v15BudgetList" style="margin-top:10px"></div>
   </div>
 </section>
+
+<section id="debts" class="screen">
+  <div class="topbar"><div><div class="eyebrow">MY MONEY</div><h1>Debt</h1></div></div>
+  <div class="card"><div class="account-total" id="v16DebtTotal">GYD 0</div><div class="muted">Total debt balance</div></div>
+  <div class="card">
+    <h2>Add debt</h2>
+    <div class="form-grid-2">
+      <div><label>Name</label><input id="v16DebtName" placeholder="e.g. Car Loan"></div>
+      <div><label>Balance</label><input id="v16DebtBalance" type="number" inputmode="decimal" placeholder="0"></div>
+      <div><label>Interest rate %</label><input id="v16DebtRate" type="number" inputmode="decimal" step="0.01" placeholder="0"></div>
+      <div><label>Monthly payment</label><input id="v16DebtPayment" type="number" inputmode="decimal" placeholder="0"></div>
+    </div>
+    <button class="btn" style="margin-top:12px" onclick="addV16Debt()">Add Debt</button>
+  </div>
+  <div class="card"><h2>Your debts</h2><div id="v16DebtList"></div></div>
+</section>
+
+<section id="reports" class="screen">
+  <div class="topbar"><div><div class="eyebrow">MY MONEY</div><h1>Reports</h1></div></div>
+  <div class="card"><h2>Financial snapshot</h2><div class="report-grid" id="v16ReportStats"></div></div>
+  <div class="card"><h2>Spending by category</h2><div id="v16ReportCats"></div></div>
+  <div class="card"><h2>Net worth estimate</h2><div id="v16NetWorth"></div><p class="v15-note">Estimated as account balances minus recorded debt balances.</p></div>
+</section>
 <section id="more" class="screen">
   <div class="topbar"><div><div class="eyebrow">MY MONEY</div><h1>More</h1></div></div>
 
@@ -192,6 +236,9 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
     <div class="more-grid">
       <button class="card more-card" onclick="show('goals')"><div class="mi">🎯</div><div class="mt">Goals</div><div class="ms">Track savings targets</div></button>
       <button class="card more-card" onclick="show('accounts')"><div class="mi">🏦</div><div class="mt">Accounts</div><div class="ms">Cash, banks & savings</div></button>
+      <button class="card more-card" onclick="show('reports')"><div class="mi">📈</div><div class="mt">Reports</div><div class="ms">Cash flow & net worth</div></button>
+      <button class="card more-card" onclick="show('debts')"><div class="mi">💳</div><div class="mt">Debt</div><div class="ms">Loans & balances</div></button>
+
       <button class="card more-card" onclick="show('budgets')"><div class="mi">📊</div><div class="mt">Budgets</div><div class="ms">Overall & category limits</div></button>
 
       <button class="card more-card" onclick="show('recurring')"><div class="mi">🔁</div><div class="mt">Recurring</div><div class="ms">Bills & regular income</div></button>
@@ -215,7 +262,7 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
   </div>
 
   <div class="card">
-    <h2>V1.5</h2>
+    <h2>V1.6</h2>
     <p class="muted">Navigation, recurring automation, backup & restore, dashboard improvements and interface polish.</p>
   </div>
 </section>
@@ -225,6 +272,14 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 <div class="card"><b>Monthly budget</b><input id="budgetInput" class="input" type="number" placeholder="GYD"><button class="btn" onclick="saveBudget()">Save budget</button></div>
 <div class="card"><b>Data</b><p class="muted">Your data stays on this device/browser.</p><button class="btn secondary" onclick="exportData()">Export backup</button> <button class="btn danger" onclick="deleteData()">Delete all data</button></div>
 <div class="card"><b>About</b><p>My Money — Version 1.2</p><p class="muted">Local-only personal finance tracker.</p></div>
+
+  <div class="card">
+    <h2>App Lock</h2>
+    <p class="muted">Protect My Money with a PIN on this device.</p>
+    <div id="v16LockStatus" class="v15-note"></div>
+    <button class="btn" style="margin-top:10px" onclick="setupV16Pin()">Set / Change PIN</button>
+    <button class="btn secondary" style="margin-top:8px" onclick="toggleV16Lock()">Turn Lock On/Off</button>
+  </div>
 </section>
 </main>
 <div id="editModal" style="display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:25px;overflow:auto">
@@ -418,14 +473,14 @@ function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 try{
   const oldRender=window.render;
   if(typeof oldRender==='function'){
-    window.render=function(){oldRender.apply(this,arguments);injectV14Dashboard();renderV14Upcoming();renderV15All();}
+    window.render=function(){oldRender.apply(this,arguments);injectV14Dashboard();renderV14Upcoming();renderV15All();renderV16Debt();renderV16Reports();updateV16LockStatus();}
   }else{
     setTimeout(injectV14Dashboard,100);
   }
 }catch(e){}
 
 
-/* ===== V1.5 ===== */
+/* ===== V1.6 ===== */
 function showToast(msg){
   let t=document.getElementById('toast');
   if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}
@@ -463,6 +518,9 @@ function restoreBackup(ev){
       if(typeof data.budget!=='number')data.budget=0;
 if(!Array.isArray(data.accounts))data.accounts=[];
 if(!Array.isArray(data.budgets))data.budgets=[];
+if(!Array.isArray(data.debts))data.debts=[];
+if(!data.appLock || typeof data.appLock!=='object')data.appLock={enabled:false,pin:''};
+
 data.accounts=data.accounts.map(a=>({...a,id:a.id||('a'+Date.now()+Math.random().toString(36).slice(2))}));
 data.budgets=data.budgets.map(b=>({...b,id:b.id||('b'+Date.now()+Math.random().toString(36).slice(2))}));
 
@@ -545,7 +603,7 @@ function processRecurring(){
 try{processRecurring()}catch(e){console.warn('Recurring processing skipped',e)}
 
 
-/* ===== V1.5 Accounts + Budgeting ===== */
+/* ===== V1.6 Accounts + Budgeting ===== */
 const V15_CATS=['Food','Transport','Housing','Utilities','Shopping','Entertainment','Health','Bills','Subscriptions','Business','Education','Other'];
 
 function v15Money(n){return (typeof money==='function')?money(Number(n)||0):'GYD '+Number(n||0).toLocaleString();}
@@ -671,6 +729,112 @@ function renderV15All(){
 }
 
 try{setTimeout(renderV15All,80)}catch(e){console.warn(e)}
+
+
+/* ===== V1.6 Debt + Reports + App Lock ===== */
+function addV16Debt(){
+  const name=(document.getElementById('v16DebtName').value||'').trim();
+  const balance=Number(document.getElementById('v16DebtBalance').value)||0;
+  const rate=Number(document.getElementById('v16DebtRate').value)||0;
+  const payment=Number(document.getElementById('v16DebtPayment').value)||0;
+  if(!name || balance<=0){alert('Enter a debt name and balance.');return;}
+  data.debts=data.debts||[];
+  data.debts.push({id:'d'+Date.now(),name,balance,rate,payment});
+  v15Save();renderV16Debt();
+  ['v16DebtName','v16DebtBalance','v16DebtRate','v16DebtPayment'].forEach(id=>document.getElementById(id).value='');
+  showToast('Debt added');
+}
+function deleteV16Debt(id){
+  if(!confirm('Delete this debt?'))return;
+  data.debts=(data.debts||[]).filter(d=>d.id!==id);v15Save();renderV16Debt();renderV16Reports();showToast('Debt deleted');
+}
+function editV16Debt(id){
+  const d=(data.debts||[]).find(x=>x.id===id);if(!d)return;
+  const b=prompt('Current balance:',d.balance);if(b===null)return;
+  const p=prompt('Monthly payment:',d.payment);if(p===null)return;
+  d.balance=Math.max(0,Number(b)||0);d.payment=Math.max(0,Number(p)||0);
+  v15Save();renderV16Debt();renderV16Reports();showToast('Debt updated');
+}
+function renderV16Debt(){
+  const list=document.getElementById('v16DebtList');if(!list)return;
+  const arr=data.debts||[], total=arr.reduce((s,d)=>s+(Number(d.balance)||0),0);
+  const totalEl=document.getElementById('v16DebtTotal');if(totalEl)totalEl.textContent=v15Money(total);
+  if(!arr.length){list.innerHTML='<div class="empty">No debts added yet.</div>';return;}
+  list.innerHTML='<div class="debt-grid">'+arr.map(d=>`
+    <div class="card debt-card">
+      <div class="debt-name"><b>${esc(d.name)}</b></div>
+      <div class="debt-balance">${v15Money(d.balance)}</div>
+      <div class="debt-meta">${Number(d.rate||0).toFixed(2)}% interest · ${v15Money(d.payment)} / month</div>
+      <div class="account-actions"><button class="btn secondary" onclick="editV16Debt('${d.id}')">Update</button><button class="btn secondary" onclick="deleteV16Debt('${d.id}')">Delete</button></div>
+    </div>`).join('')+'</div>';
+}
+function renderV16Reports(){
+  const stats=document.getElementById('v16ReportStats');if(!stats)return;
+  const tx=monthTx(), income=tx.filter(t=>t.type==='income').reduce((s,t)=>s+(Number(t.amount)||0),0);
+  const spending=tx.filter(t=>t.type==='expense').reduce((s,t)=>s+(Number(t.amount)||0),0);
+  const surplus=income-spending;
+  const accounts=(data.accounts||[]).reduce((s,a)=>s+(Number(a.balance)||0),0);
+  const debt=(data.debts||[]).reduce((s,d)=>s+(Number(d.balance)||0),0);
+  const net=accounts-debt;
+  stats.innerHTML=[
+    ['Income',v15Money(income)],['Spending',v15Money(spending)],
+    ['Surplus',v15Money(surplus)],['Accounts',v15Money(accounts)],
+    ['Debt',v15Money(debt)],['Net worth',v15Money(net)]
+  ].map(x=>`<div class="report-stat"><div class="label">${x[0]}</div><div class="value">${x[1]}</div></div>`).join('');
+  const cats={};tx.filter(t=>t.type==='expense').forEach(t=>cats[t.category||'Other']=(cats[t.category||'Other']||0)+(Number(t.amount)||0));
+  const rows=Object.entries(cats).sort((a,b)=>b[1]-a[1]);
+  const catEl=document.getElementById('v16ReportCats');
+  catEl.innerHTML=rows.length?rows.map(([c,n])=>{
+    const pct=spending?Math.round(n/spending*100):0;
+    return `<div class="budget-row"><div class="budget-head"><b>${esc(c)}</b><span>${v15Money(n)} · ${pct}%</span></div><div class="report-bar"><span style="width:${pct}%"></span></div></div>`;
+  }).join(''):'<div class="empty">No expenses recorded this month.</div>';
+  const nw=document.getElementById('v16NetWorth');
+  nw.innerHTML=`<div class="net-row"><span>Accounts</span><b>${v15Money(accounts)}</b></div><div class="net-row"><span>Debt</span><b>−${v15Money(debt)}</b></div><div class="net-row"><span>Estimated net worth</span><b>${v15Money(net)}</b></div>`;
+}
+
+/* PIN lock — PIN is stored locally on the device. */
+function updateV16LockStatus(){
+  const el=document.getElementById('v16LockStatus');if(el)el.textContent=data.appLock&&data.appLock.enabled?'App lock is ON.':'App lock is OFF.';
+}
+function setupV16Pin(){
+  const first=prompt('Create a 4-digit PIN:');if(first===null)return;
+  if(!/^\d{4}$/.test(first)){alert('PIN must be exactly 4 digits.');return;}
+  const second=prompt('Confirm your PIN:');if(second!==first){alert('PINs do not match.');return;}
+  data.appLock={enabled:false,pin:first};v15Save();updateV16LockStatus();showToast('PIN saved');
+}
+function toggleV16Lock(){
+  if(!data.appLock || !data.appLock.pin){alert('Set a PIN first.');return;}
+  data.appLock.enabled=!data.appLock.enabled;v15Save();updateV16LockStatus();
+  if(data.appLock.enabled)lockV16Screen();else showToast('App lock turned off');
+}
+function lockV16Screen(){
+  let ov=document.getElementById('v16LockOverlay');
+  if(!ov){
+    ov=document.createElement('div');ov.id='v16LockOverlay';ov.className='lock-overlay';
+    ov.innerHTML=`<div class="lock-box"><div class="eyebrow">MY MONEY</div><h1>App Locked</h1><p class="muted">Enter your PIN to continue.</p><div id="v16PinDots" class="pin-dots">○ ○ ○ ○</div><div id="v16PinError" class="lock-error"></div><div class="pin-pad">${[1,2,3,4,5,6,7,8,9,'','0','⌫'].map(k=>k===''?'<div></div>':`<button class="pin-key" onclick="v16PinKey('${k}')">${k}</button>`).join('')}</div></div>`;
+    document.body.appendChild(ov);
+  }
+  ov.classList.add('show');window.v16Pin='';
+  v16UpdateDots();
+}
+function v16PinKey(k){
+  if(k==='⌫'){window.v16Pin=(window.v16Pin||'').slice(0,-1);v16UpdateDots();return;}
+  if((window.v16Pin||'').length>=4)return;
+  window.v16Pin=(window.v16Pin||'')+k;v16UpdateDots();
+  if(window.v16Pin.length===4){
+    if(window.v16Pin===data.appLock.pin){document.getElementById('v16LockOverlay').classList.remove('show');window.v16Pin='';}
+    else{document.getElementById('v16PinError').textContent='Incorrect PIN';window.v16Pin='';setTimeout(v16UpdateDots,100);}
+  }
+}
+function v16UpdateDots(){
+  const el=document.getElementById('v16PinDots');if(!el)return;
+  const n=(window.v16Pin||'').length;el.textContent=[0,1,2,3].map(i=>i<n?'●':'○').join(' ');
+}
+function v16Init(){
+  renderV16Debt();renderV16Reports();updateV16LockStatus();
+  if(data.appLock&&data.appLock.enabled)setTimeout(lockV16Screen,150);
+}
+try{setTimeout(v16Init,100)}catch(e){console.warn(e)}
 
 </script>
 <div id="toast" class="toast"></div>
