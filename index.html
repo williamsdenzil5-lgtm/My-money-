@@ -41,6 +41,11 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 <section id="transactions" class="screen">
 <div class="section-title">Transactions</div>
 <input id="search" class="input search" placeholder="Search transactions" oninput="renderTransactions()">
+<div class="grid">
+<select id="filterType" class="input" onchange="renderTransactions()"><option value="all">All types</option><option value="expense">Expenses</option><option value="income">Income</option></select>
+<select id="filterCategory" class="input" onchange="renderTransactions()"><option value="all">All categories</option></select>
+</div>
+<select id="sortTx" class="input" onchange="renderTransactions()"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="largest">Largest amount</option><option value="smallest">Smallest amount</option></select>
 <div id="transactionList"></div>
 </section>
 
@@ -69,7 +74,20 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 <div class="notice">Set up regular income or expenses such as salary, rent, utilities and subscriptions. The app will show them in your forecast; you can also create the transaction when it is due.</div>
 <div class="card"><div class="tabs"><button id="recExpense" class="on" onclick="setRecType('expense')">Expense</button><button id="recIncome" onclick="setRecType('income')">Income</button></div>
 <label class="muted">Description</label><input id="recName" class="input" placeholder="Rent / Salary"><label class="muted">Amount (GYD)</label><input id="recAmount" class="input" type="number"><label class="muted">Category</label><select id="recCategory" class="input"></select><label class="muted">Frequency</label><select id="recFreq" class="input"><option value="monthly">Monthly</option><option value="weekly">Weekly</option><option value="yearly">Yearly</option></select><label class="muted">Next date</label><input id="recDate" class="input" type="date"><button class="btn" onclick="addRecurring()">Add recurring</button></div>
-<div id="recList"></div>
+<div id="recurringSummary" class="notice" style="margin-top:12px"></div><div id="recList"></div>
+</section>
+
+<section id="health" class="screen">
+<div class="section-title">Financial Health</div>
+<div class="card hero"><div class="muted">Overall score</div><div class="big" id="healthScore">0/100</div><div id="healthGrade" class="green">Building your score</div></div>
+<div class="grid">
+<div class="metric"><div class="muted">Savings rate</div><div id="healthSavings" class="value">0%</div></div>
+<div class="metric"><div class="muted">Expense ratio</div><div id="healthRatio" class="value">0%</div></div>
+<div class="metric"><div class="muted">Budget used</div><div id="healthBudget" class="value">0%</div></div>
+<div class="metric"><div class="muted">Monthly surplus</div><div id="healthSurplus" class="value">GYD 0</div></div>
+</div>
+<div class="card"><b>How you're doing</b><p id="healthAdvice" class="muted"></p></div>
+<div class="card"><b>Score breakdown</b><div id="healthBreakdown"></div></div>
 </section>
 
 <section id="settings" class="screen">
@@ -79,12 +97,23 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 <div class="card"><b>About</b><p>My Money — Version 1.2</p><p class="muted">Local-only personal finance tracker.</p></div>
 </section>
 </main>
+<div id="editModal" style="display:none;position:fixed;inset:0;background:#0008;z-index:20;padding:25px;overflow:auto">
+<div class="card" style="max-width:600px;margin:40px auto;background:#121b2b">
+<div class="row"><b>Edit transaction</b><button class="btn small secondary" onclick="closeEdit()">Close</button></div>
+<input id="editId" type="hidden"><label class="muted">Amount</label><input id="editAmount" class="input" type="number">
+<label class="muted">Category</label><select id="editCategory" class="input"></select>
+<label class="muted">Date</label><input id="editDate" class="input" type="date">
+<label class="muted">Payment method</label><select id="editMethod" class="input"><option>Cash</option><option>Bank</option><option>Card</option><option>Transfer</option><option>Other</option></select>
+<label class="muted">Note</label><input id="editNote" class="input">
+<button class="btn" onclick="saveEdit()">Save changes</button>
+</div></div>
+
 <nav class="nav">
 <button data-screen="dashboard" class="on" onclick="show('dashboard')"><span>⌂</span>Dashboard</button>
 <button data-screen="add" onclick="show('add')"><span>＋</span>Add</button>
 <button data-screen="transactions" onclick="show('transactions')"><span>☷</span>Transactions</button>
 <button data-screen="insights" onclick="show('insights')"><span>▥</span>Insights</button>
-<button data-screen="more" onclick="show('history')"><span>◫</span>More</button>
+<button data-screen="health" onclick="show('health')"><span>♥</span>Health</button>
 </nav>
 </div>
 <script>
@@ -113,7 +142,7 @@ function show(id){
  if(id==='insights')renderInsights();
  if(id==='goals')renderGoals();
  if(id==='history'){document.getElementById('historyMonth').value ||= monthKey(isoToday());renderHistory()}
- if(id==='recurring')renderRecurring();
+ if(id==='recurring')renderRecurring(); if(id==='health')renderHealth();
 }
 function setType(t){type=t;expenseTab.classList.toggle('on',t==='expense');incomeTab.classList.toggle('on',t==='income');}
 function fillCats(){
@@ -156,9 +185,27 @@ function goalHTML(g){
  return `<div class="goal"><div class="row"><b>${esc(g.name)}</b><span>${Math.round(pct)}%</span></div><div class="bar"><i style="width:${pct}%"></i></div><div class="row"><span class="muted">${money(g.saved)} / ${money(g.target)}</span><span class="muted">${g.date||''}</span></div></div>`;
 }
 function renderTransactions(){
- const q=(search.value||'').toLowerCase();
- const arr=data.transactions.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id).filter(t=>JSON.stringify(t).toLowerCase().includes(q));
- transactionList.innerHTML=arr.length?arr.map(t=>`<div class="transaction"><div class="row"><b>${esc(t.category)}</b><span class="${t.type==='income'?'green':'red'} amount">${t.type==='income'?'+':'-'} ${money(t.amount)}</span></div><div class="muted">${t.date} · ${esc(t.method)}${t.note?' · '+esc(t.note):''}</div><button class="linkbtn" onclick="delTx(${t.id})">Delete</button></div>`).join(''):'<div class="empty">No transactions found.</div>';
+ const q=(search.value||'').toLowerCase(), ft=document.getElementById('filterType')?.value||'all', fc=document.getElementById('filterCategory')?.value||'all', so=document.getElementById('sortTx')?.value||'newest';
+ let arr=data.transactions.slice().filter(t=>JSON.stringify(t).toLowerCase().includes(q));
+ if(ft!=='all')arr=arr.filter(t=>t.type===ft); if(fc!=='all')arr=arr.filter(t=>t.category===fc);
+ arr.sort((a,b)=>so==='largest'?b.amount-a.amount:so==='smallest'?a.amount-b.amount:so==='oldest'?a.date.localeCompare(b.date)||a.id-b.id:b.date.localeCompare(a.date)||b.id-a.id);
+ transactionList.innerHTML=arr.length?arr.map(t=>`<div class="transaction"><div class="row"><b>${esc(t.category)}</b><span class="${t.type==='income'?'green':'red'} amount">${t.type==='income'?'+':'-'} ${money(t.amount)}</span></div><div class="muted">${t.date} · ${esc(t.method)}${t.note?' · '+esc(t.note):''}</div><button class="linkbtn" onclick="editTx(${t.id})">Edit</button> <button class="linkbtn" onclick="delTx(${t.id})">Delete</button></div>`).join(''):'<div class="empty">No transactions found.</div>';
+}
+function populateTransactionFilters(){
+ const el=document.getElementById('filterCategory'); if(!el)return;
+ const current=el.value||'all'; el.innerHTML='<option value="all">All categories</option>'+cats.map(c=>`<option>${c}</option>`).join(''); el.value=current;
+}
+function editTx(id){
+ const t=data.transactions.find(x=>x.id===id); if(!t)return;
+ editId.value=id;editAmount.value=t.amount;editCategory.innerHTML=cats.map(c=>`<option>${c}</option>`).join('');editCategory.value=t.category;editDate.value=t.date;editMethod.value=t.method;editNote.value=t.note||'';
+ editModal.style.display='block';
+}
+function closeEdit(){editModal.style.display='none'}
+function saveEdit(){
+ const t=data.transactions.find(x=>x.id===Number(editId.value)); if(!t)return;
+ const a=Number(editAmount.value);if(!a)return alert('Enter an amount.');
+ t.amount=a;t.category=editCategory.value;t.date=editDate.value||isoToday();t.method=editMethod.value;t.note=editNote.value||'';
+ persist();closeEdit();renderTransactions();renderDashboard();renderInsights();renderHistory();renderHealth();
 }
 function delTx(id){if(confirm('Delete this transaction?')){data.transactions=data.transactions.filter(t=>t.id!==id);persist();renderTransactions();renderDashboard();}}
 function sixMonths(){
@@ -195,12 +242,26 @@ function addRecurring(){
  if(!n||!a)return alert('Enter a description and amount.');
  data.recurring.push({id:Date.now(),name:n,amount:a,type:recType,category:recCategory.value,freq:recFreq.value,date:recDate.value||isoToday()});persist();recName.value='';recAmount.value='';renderRecurring();
 }
-function renderRecurring(){recList.innerHTML=data.recurring.length?data.recurring.map(r=>`<div class="transaction"><div class="row"><b>${esc(r.name)}</b><span class="${r.type==='income'?'green':'red'}">${r.type==='income'?'+':'-'} ${money(r.amount)}</span></div><div class="muted">${r.freq} · next ${r.date} · ${esc(r.category)}</div><button class="linkbtn" onclick="delRecurring(${r.id})">Delete</button></div>`).join(''):'<div class="empty">No recurring transactions yet.</div>'}
+function renderRecurring(){const ri=data.recurring.filter(r=>r.type==='income').reduce((s,r)=>s+r.amount*(r.freq==='weekly'?4.345:r.freq==='yearly'?(1/12):1),0),re=data.recurring.filter(r=>r.type==='expense').reduce((s,r)=>s+r.amount*(r.freq==='weekly'?4.345:r.freq==='yearly'?(1/12):1),0); recurringSummary.textContent='Estimated recurring each month: '+money(ri)+' income · '+money(re)+' expenses';recList.innerHTML=data.recurring.length?data.recurring.map(r=>`<div class="transaction"><div class="row"><b>${esc(r.name)}</b><span class="${r.type==='income'?'green':'red'}">${r.type==='income'?'+':'-'} ${money(r.amount)}</span></div><div class="muted">${r.freq} · next ${r.date} · ${esc(r.category)}</div><button class="linkbtn" onclick="delRecurring(${r.id})">Delete</button></div>`).join(''):'<div class="empty">No recurring transactions yet.</div>'}
 function delRecurring(id){data.recurring=data.recurring.filter(r=>r.id!==id);persist();renderRecurring()}
+function renderHealth(){
+ const k=monthKey(isoToday()),t=totals(k),incomeV=t.income,spendV=t.spend;
+ const savings=incomeV?Math.max(0,(incomeV-spendV)/incomeV*100):0, ratio=incomeV?spendV/incomeV*100:0, budgetPct=data.budget?spendV/data.budget*100:0;
+ let score=0;
+ const s1=Math.min(35,Math.max(0,savings/20*35)), s2=incomeV?Math.min(30,Math.max(0,(1-ratio/100)*30)):0, s3=data.budget?Math.min(20,Math.max(0,(1-budgetPct/100)*20)):10, s4=incomeV?15:0;
+ score=Math.round(s1+s2+s3+s4);
+ healthScore.textContent=score+'/100';healthSavings.textContent=Math.round(savings)+'%';healthRatio.textContent=Math.round(ratio)+'%';healthBudget.textContent=data.budget?Math.round(budgetPct)+'%':'—';healthSurplus.textContent=money(incomeV-spendV);
+ healthGrade.textContent=score>=80?'Excellent financial position':score>=60?'Good — keep improving':score>=40?'Fair — there is room to improve':'Needs attention';
+ healthGrade.className=score>=60?'green':'red';
+ const advice=[]; if(!incomeV)advice.push('Add your income to make the health score more meaningful.'); else if(savings<10)advice.push('Try to increase your monthly savings rate toward 10% or more.'); else advice.push('Your savings rate is moving in a healthy direction.');
+ if(data.budget && budgetPct>90)advice.push('You are close to your monthly spending budget.'); if(ratio>90)advice.push('Spending is very close to income this month.'); if(incomeV-spendV<0)advice.push('You spent more than your recorded income this month.');
+ healthAdvice.textContent=advice.join(' ');
+ healthBreakdown.innerHTML=`<p>Saving: ${Math.round(s1)}/35</p><p>Income vs expenses: ${Math.round(s2)}/30</p><p>Budget control: ${Math.round(s3)}/20</p><p>Recorded income: ${Math.round(s4)}/15</p>`;
+}
 function saveBudget(){data.budget=Number(budgetInput.value)||0;persist();renderDashboard();alert('Budget saved.')}
 function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-money-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
 function deleteData(){if(confirm('Delete ALL My Money data on this device?')){localStorage.removeItem(KEY);data=load();renderDashboard();alert('All data deleted.')}}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-fillCats();date.value=isoToday();recDate.value=isoToday();historyMonth.value=monthKey(isoToday());renderDashboard();
+fillCats();populateTransactionFilters();date.value=isoToday();recDate.value=isoToday();historyMonth.value=monthKey(isoToday());renderDashboard();
 </script>
 </body></html>
