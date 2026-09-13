@@ -6,14 +6,14 @@
 <meta name="theme-color" content="#0b1220">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>My Money</title>
+<title>My Money — Share Edition</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0b1220;color:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh;padding-bottom:92px}.top{padding:42px 30px 18px}.eyebrow{letter-spacing:3px;color:#9aa6bb;font-size:13px}.title{font-size:42px;font-weight:800;margin:5px 0}.topbar{display:flex;justify-content:space-between;align-items:center}.plus{border:0;border-radius:50%;width:62px;height:62px;background:#1b2a44;color:#fff;font-size:40px}
 main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-title{font-size:28px;margin:25px 0 16px}.card{background:#121b2b;border-radius:28px;padding:25px;margin:14px 0}.hero{padding:30px}.muted{color:#9ba7ba}.big{font-size:42px;font-weight:800;margin:7px 0 10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.metric{background:#121b2b;border-radius:24px;padding:22px}.metric .value{font-size:25px;font-weight:800;margin-top:7px}.green{color:#0bb56a}.red{color:#f04438}.blue{color:#2684ff}.bar{height:14px;background:#344157;border-radius:20px;overflow:hidden;margin:16px 0}.bar i{display:block;height:100%;background:#2670e8;border-radius:20px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.input,select{width:100%;background:#111a29;border:1px solid #344157;border-radius:16px;padding:16px;color:#fff;margin:7px 0 16px;outline:none}.btn{border:0;border-radius:16px;padding:15px 20px;background:#2167dc;color:#fff;font-weight:700}.btn.secondary{background:#26344b}.btn.danger{background:#c93427}.btn.small{padding:10px 13px;font-size:14px}.tabs{display:flex;background:#121b2b;border-radius:16px;padding:4px;margin-bottom:18px}.tabs button{flex:1;border:0;background:transparent;color:#fff;padding:13px;border-radius:13px}.tabs button.on{background:#1e2b41;color:#2581ff}.transaction{background:#121b2b;border-radius:22px;padding:18px;margin:10px 0}.transaction .amount{font-weight:800;font-size:19px}.search{margin-bottom:12px}.nav{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#101a2a;border-top:1px solid #465064;padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr)}.nav button{border:0;background:transparent;color:#dce2ec;font-size:12px;padding:7px 2px}.nav button span{display:block;font-size:25px;margin-bottom:3px}.nav button.on{color:#2684ff}.pill{display:inline-block;background:#1d2b43;color:#aeb9cb;padding:7px 11px;border-radius:20px;font-size:13px}.chart{height:190px;display:flex;align-items:end;gap:8px;padding-top:20px}.col{flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;height:100%}.col i{display:block;width:80%;max-width:42px;background:#2670e8;border-radius:8px 8px 0 0;min-height:3px}.col small{color:#8f9aae;margin-top:7px}.goal{margin:12px 0;padding:18px;background:#172236;border-radius:20px}.notice{background:#18273e;border-left:4px solid #2684ff;padding:13px 15px;border-radius:12px;color:#c8d1df}.empty{text-align:center;color:#8f9aae;padding:30px}.linkbtn{border:0;background:none;color:#2684ff;padding:0}
 @media(min-width:700px){main{max-width:850px;margin:auto}.top{max-width:850px;margin:auto}.nav{max-width:850px;margin:auto}}
 
-/* V1.6 polish */
+/* V2.0 polish */
 .more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .more-card{cursor:pointer;min-height:92px;display:flex;flex-direction:column;justify-content:center}
 .more-card .mi{font-size:25px;margin-bottom:7px}
@@ -39,7 +39,7 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 @media(max-width:420px){.more-grid{gap:9px}.more-card{min-height:84px}}
 
 
-/* V1.6 Accounts + Budgeting */
+/* V2.0 Accounts + Budgeting */
 .account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .account-card{position:relative;cursor:pointer}
 .account-card .account-name{font-weight:850}
@@ -63,7 +63,7 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 @media(max-width:420px){.account-grid{grid-template-columns:1fr}.form-grid-2{grid-template-columns:1fr}}
 
 
-/* V1.6 Debt + Reports + App Lock */
+/* V2.0 Debt + Reports + App Lock */
 .debt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .debt-card{cursor:pointer}
 .debt-balance{font-size:21px;font-weight:900;margin-top:8px}
@@ -83,12 +83,75 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 .report-bar span{display:block;height:100%;background:currentColor;border-radius:99px}
 @media(max-width:420px){.debt-grid,.report-grid{grid-template-columns:1fr}}
 
+
+/* My Money V2.0 Share Edition theme */
+:root{
+  --mm-bg:#07111f;
+  --mm-card:#0e1d31;
+  --mm-card2:#12263d;
+  --mm-text:#eef6ff;
+  --mm-muted:#9eb1c7;
+  --mm-primary:#22c7a9;
+  --mm-primary2:#35a7ff;
+  --mm-border:rgba(255,255,255,.10);
+  --mm-danger:#ff6f7d;
+  --mm-warn:#ffc857;
+}
+html,body{background:linear-gradient(145deg,#06101d,#0b1b2e 55%,#071521)!important;color:var(--mm-text)!important}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+.card{background:linear-gradient(145deg,rgba(18,38,61,.96),rgba(10,27,45,.96))!important;border:1px solid var(--mm-border)!important;box-shadow:0 8px 28px rgba(0,0,0,.18)}
+.btn{background:linear-gradient(135deg,var(--mm-primary),var(--mm-primary2))!important;color:#04111c!important;border:0!important;font-weight:850}
+.btn.secondary{background:rgba(255,255,255,.07)!important;color:var(--mm-text)!important;border:1px solid var(--mm-border)!important}
+input,select,textarea{background:#081728!important;color:var(--mm-text)!important;border:1px solid var(--mm-border)!important}
+.bottom-nav{background:rgba(6,16,29,.96)!important;border-top:1px solid var(--mm-border)!important}
+.bottom-nav .nav.active,.bottom-nav .nav:hover{color:var(--mm-primary)!important}
+.eyebrow{color:var(--mm-primary)!important;letter-spacing:.16em}
+.progress{background:rgba(255,255,255,.08)!important}
+.progress>span,.report-bar span{color:var(--mm-primary)!important}
+.badge.on-track{color:#75e8c9!important}
+.hero-share{background:linear-gradient(135deg,rgba(34,199,169,.18),rgba(53,167,255,.13));border:1px solid rgba(34,199,169,.22);border-radius:20px;padding:22px;margin-bottom:14px}
+.hero-share h1{font-size:31px;line-height:1.05;margin:7px 0}
+.hero-share p{color:var(--mm-muted);line-height:1.5}
+.setup-list{margin:14px 0 0;padding-left:20px;color:var(--mm-muted);line-height:1.8}
+.mm-logo{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--mm-primary),var(--mm-primary2));color:#06111d;font-size:24px;font-weight:950}
+.share-pill{display:inline-flex;padding:6px 10px;border-radius:99px;background:rgba(34,199,169,.12);color:#6ee7cc;font-size:11px;font-weight:850}
+@media(max-width:420px){.hero-share h1{font-size:27px}}
+
 </style>
 </head>
 <body>
 <div class="app">
 <header class="top"><div class="topbar"><div><div class="eyebrow">PERSONAL FINANCE</div><div class="title">My Money</div></div><button class="plus" onclick="show('add')">+</button></div></header>
 <main>
+
+<section id="welcome" class="screen">
+  <div class="hero-share">
+    <div class="mm-logo">M</div>
+    <div class="share-pill" style="margin-top:15px">MY MONEY · SHARE EDITION</div>
+    <h1>Take control of your money.</h1>
+    <p>A simple personal finance app for tracking spending, income, savings, budgets and financial goals.</p>
+  </div>
+  <div class="card">
+    <h2>Let's set you up</h2>
+    <p class="muted">This information is stored on your device. My Money does not require an account for this version.</p>
+    <label>Your name</label>
+    <input id="v20Name" placeholder="e.g. Alex">
+    <label style="margin-top:10px">Currency</label>
+    <select id="v20Currency"><option value="GYD">GYD — Guyanese Dollar</option><option value="USD">USD — US Dollar</option><option value="TTD">TTD — Trinidad & Tobago Dollar</option><option value="CAD">CAD — Canadian Dollar</option><option value="GBP">GBP — British Pound</option><option value="EUR">EUR — Euro</option></select>
+    <label style="margin-top:10px">Monthly income (optional)</label>
+    <input id="v20Income" type="number" inputmode="decimal" placeholder="0">
+    <button class="btn" style="margin-top:14px;width:100%" onclick="finishV20Setup()">Start My Money</button>
+  </div>
+  <div class="card">
+    <h2>Privacy by design</h2>
+    <ul class="setup-list">
+      <li>Your financial records stay in your browser/device.</li>
+      <li>You can export a backup at any time.</li>
+      <li>No login or bank connection is required.</li>
+    </ul>
+  </div>
+</section>
+
 <section id="dashboard" class="screen active">
 <div class="section-title">Dashboard</div>
 <div class="card hero"><div class="muted">Current month balance</div><div class="big" id="balance">GYD 0</div><div id="savingsRate" class="green">Savings rate: 0%</div></div>
@@ -227,6 +290,47 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
   <div class="card"><h2>Spending by category</h2><div id="v16ReportCats"></div></div>
   <div class="card"><h2>Net worth estimate</h2><div id="v16NetWorth"></div><p class="v15-note">Estimated as account balances minus recorded debt balances.</p></div>
 </section>
+
+<section id="profile" class="screen">
+  <div class="topbar"><div><div class="eyebrow">MY MONEY</div><h1>My Profile</h1></div></div>
+  <div class="card">
+    <h2>Personal settings</h2>
+    <label>Name</label><input id="v20ProfileName">
+    <label style="margin-top:10px">Currency</label>
+    <select id="v20ProfileCurrency"><option>GYD</option><option>USD</option><option>TTD</option><option>CAD</option><option>GBP</option><option>EUR</option></select>
+    <button class="btn" style="margin-top:12px" onclick="saveV20Profile()">Save Profile</button>
+  </div>
+  <div class="card">
+    <h2>Start fresh</h2>
+    <p class="muted">Use this only when you want to erase the data on this device and begin again.</p>
+    <button class="btn secondary" onclick="resetV20Data()">Reset My Money</button>
+  </div>
+</section>
+
+<section id="about" class="screen">
+  <div class="topbar"><div><div class="eyebrow">MY MONEY</div><h1>About</h1></div></div>
+  <div class="hero-share">
+    <div class="mm-logo">M</div>
+    <h1>My Money</h1>
+    <p>Share Edition · Version 2.0</p>
+  </div>
+  <div class="card">
+    <h2>What's included</h2>
+    <ul class="setup-list">
+      <li>Dashboard and transaction tracking</li>
+      <li>Goals, budgets and recurring transactions</li>
+      <li>Accounts, debt and financial health</li>
+      <li>Reports and estimated net worth</li>
+      <li>Backup & restore</li>
+      <li>Optional PIN app lock</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h2>Updates</h2>
+    <p class="muted">You're using the Share Edition. Future releases can be published to the same website address, so you won't need a new link when the app is updated.</p>
+    <div id="v20UpdateStatus"></div>
+  </div>
+</section>
 <section id="more" class="screen">
   <div class="topbar"><div><div class="eyebrow">MY MONEY</div><h1>More</h1></div></div>
 
@@ -237,6 +341,9 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
       <button class="card more-card" onclick="show('goals')"><div class="mi">🎯</div><div class="mt">Goals</div><div class="ms">Track savings targets</div></button>
       <button class="card more-card" onclick="show('accounts')"><div class="mi">🏦</div><div class="mt">Accounts</div><div class="ms">Cash, banks & savings</div></button>
       <button class="card more-card" onclick="show('reports')"><div class="mi">📈</div><div class="mt">Reports</div><div class="ms">Cash flow & net worth</div></button>
+      <button class="card more-card" onclick="show('profile')"><div class="mi">👤</div><div class="mt">My Profile</div><div class="ms">Name & currency</div></button>
+      <button class="card more-card" onclick="show('about')"><div class="mi">ℹ️</div><div class="mt">About</div><div class="ms">Version & updates</div></button>
+
       <button class="card more-card" onclick="show('debts')"><div class="mi">💳</div><div class="mt">Debt</div><div class="ms">Loans & balances</div></button>
 
       <button class="card more-card" onclick="show('budgets')"><div class="mi">📊</div><div class="mt">Budgets</div><div class="ms">Overall & category limits</div></button>
@@ -262,7 +369,7 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
   </div>
 
   <div class="card">
-    <h2>V1.6</h2>
+    <h2>V2.0</h2>
     <p class="muted">Navigation, recurring automation, backup & restore, dashboard improvements and interface polish.</p>
   </div>
 </section>
@@ -473,14 +580,14 @@ function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 try{
   const oldRender=window.render;
   if(typeof oldRender==='function'){
-    window.render=function(){oldRender.apply(this,arguments);injectV14Dashboard();renderV14Upcoming();renderV15All();renderV16Debt();renderV16Reports();updateV16LockStatus();}
+    window.render=function(){oldRender.apply(this,arguments);injectV14Dashboard();renderV14Upcoming();renderV15All();renderV16Debt();renderV16Reports();updateV16LockStatus();v20DashboardGreeting();}
   }else{
     setTimeout(injectV14Dashboard,100);
   }
 }catch(e){}
 
 
-/* ===== V1.6 ===== */
+/* ===== V2.0 ===== */
 function showToast(msg){
   let t=document.getElementById('toast');
   if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}
@@ -603,7 +710,7 @@ function processRecurring(){
 try{processRecurring()}catch(e){console.warn('Recurring processing skipped',e)}
 
 
-/* ===== V1.6 Accounts + Budgeting ===== */
+/* ===== V2.0 Accounts + Budgeting ===== */
 const V15_CATS=['Food','Transport','Housing','Utilities','Shopping','Entertainment','Health','Bills','Subscriptions','Business','Education','Other'];
 
 function v15Money(n){return (typeof money==='function')?money(Number(n)||0):'GYD '+Number(n||0).toLocaleString();}
@@ -731,7 +838,7 @@ function renderV15All(){
 try{setTimeout(renderV15All,80)}catch(e){console.warn(e)}
 
 
-/* ===== V1.6 Debt + Reports + App Lock ===== */
+/* ===== V2.0 Debt + Reports + App Lock ===== */
 function addV16Debt(){
   const name=(document.getElementById('v16DebtName').value||'').trim();
   const balance=Number(document.getElementById('v16DebtBalance').value)||0;
@@ -835,6 +942,77 @@ function v16Init(){
   if(data.appLock&&data.appLock.enabled)setTimeout(lockV16Screen,150);
 }
 try{setTimeout(v16Init,100)}catch(e){console.warn(e)}
+
+
+/* ===== My Money V2.0 Share Edition ===== */
+function v20Save(){localStorage.setItem(KEY,JSON.stringify(data));}
+function v20SetupNeeded(){
+  return !data.shareEditionSetup;
+}
+function finishV20Setup(){
+  const name=(document.getElementById('v20Name').value||'').trim();
+  const currency=document.getElementById('v20Currency').value;
+  const income=Number(document.getElementById('v20Income').value)||0;
+  if(!name){alert('Please enter your name.');return;}
+  data.profile={name,currency};
+  data.shareEditionSetup=true;
+  data.onboardingIncome=income;
+  if(income>0 && !data.transactions.some(t=>t.type==='income'&&t.description==='Monthly income')){
+    const today=new Date().toISOString().slice(0,10);
+    data.transactions.push({id:Date.now(),type:'income',description:'Monthly income',amount:income,category:'Income',date:today,payment:'',note:'Initial setup'});
+  }
+  v20Save();
+  show('dashboard');
+  if(typeof render==='function')render();
+  showToast('Welcome to My Money');
+}
+function initV20Profile(){
+  const p=data.profile||{};
+  const n=document.getElementById('v20ProfileName'), c=document.getElementById('v20ProfileCurrency');
+  if(n)n.value=p.name||'';
+  if(c)c.value=p.currency||'GYD';
+}
+function saveV20Profile(){
+  data.profile=data.profile||{};
+  data.profile.name=(document.getElementById('v20ProfileName').value||'').trim()||'My Money';
+  data.profile.currency=document.getElementById('v20ProfileCurrency').value||'GYD';
+  v20Save();showToast('Profile saved');
+  if(typeof render==='function')render();
+}
+function resetV20Data(){
+  if(!confirm('Reset My Money on this device? This will permanently remove its local data. Export a backup first if you may need it.'))return;
+  localStorage.removeItem(KEY);
+  location.reload();
+}
+function v20UpdateStatus(){
+  const el=document.getElementById('v20UpdateStatus');if(!el)return;
+  el.innerHTML='<div class="share-pill">You are on the latest Share Edition installed here</div><p class="v15-note" style="margin-top:9px">When a newer version is published, refresh the website to receive it.</p>';
+}
+function v20WelcomeGate(){
+  const w=document.getElementById('welcome');if(!w)return;
+  if(v20SetupNeeded()){
+    document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+    w.classList.add('active');
+  }
+}
+function v20Init(){
+  initV20Profile();v20UpdateStatus();v20WelcomeGate();
+}
+try{setTimeout(v20Init,120)}catch(e){console.warn(e)}
+
+
+function v20DashboardGreeting(){
+  const d=document.getElementById('dashboard');if(!d)return;
+  const existing=d.querySelector('.v20-greeting');if(existing)existing.remove();
+  const p=data.profile||{};
+  if(!p.name)return;
+  const top=d.querySelector('.topbar');
+  if(top){
+    const g=document.createElement('div');g.className='v20-greeting muted';
+    g.style.margin='-5px 0 12px';g.textContent='Welcome back, '+p.name+' 👋';
+    top.insertAdjacentElement('afterend',g);
+  }
+}
 
 </script>
 <div id="toast" class="toast"></div>
