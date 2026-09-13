@@ -8,118 +8,199 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>My Money</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#f4f6f8;color:#101828;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}#app{max-width:620px;margin:auto;min-height:100vh;padding-bottom:90px}header{padding:calc(env(safe-area-inset-top) + 18px) 20px 14px;display:flex;justify-content:space-between;align-items:center;background:#0b1220;color:white}.eyebrow{font-size:10px;letter-spacing:1.5px;opacity:.65;margin:0 0 4px}h1{margin:0;font-size:28px}h2{font-size:22px;margin:18px 0}h3{font-size:16px;margin:0 0 14px}.icon{border:0;background:#1e293b;color:white;width:42px;height:42px;border-radius:50%;font-size:26px}main{padding:0 16px}.screen{display:none}.screen.active{display:block}.month-row{display:flex;align-items:center;justify-content:space-between}.month-row h2{margin:18px 0}.month-row button{border:0;background:white;border-radius:12px;width:38px;height:38px;font-size:24px}.hero-card{background:#fff;border-radius:20px;padding:22px;margin-bottom:12px;box-shadow:0 5px 20px #0000000a}.hero-card span,.card span{color:#667085;font-size:13px}.hero-card strong{display:block;font-size:30px;margin:6px 0}.hero-card small{color:#067647}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:white;border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 5px 20px #00000008}.card strong{display:block;font-size:20px;margin-top:5px}.split{display:flex;justify-content:space-between;gap:10px;align-items:center}.progress{height:10px;background:#e4e7ec;border-radius:10px;overflow:hidden;margin:12px 0}.progress i{display:block;height:100%;width:0;background:#175cd3;border-radius:10px}.muted{color:#667085;font-size:13px}.bars{display:flex;align-items:end;gap:9px;height:160px}.bar-wrap{flex:1;display:flex;flex-direction:column;justify-content:end;height:100%;text-align:center}.bar{background:#175cd3;border-radius:7px 7px 2px 2px;min-height:3px}.bar-wrap small{font-size:10px;color:#667085;margin-top:5px;overflow:hidden}.bar-wrap b{font-size:9px;margin-bottom:3px}.seg{display:flex;background:#e4e7ec;border-radius:12px;padding:3px;margin-bottom:16px}.seg button{flex:1;border:0;background:transparent;padding:11px;border-radius:9px}.seg .selected{background:white;box-shadow:0 1px 4px #0002}label{display:block;font-size:13px;color:#475467;margin:13px 0}input,select{width:100%;margin-top:7px;padding:13px;border:1px solid #d0d5dd;border-radius:11px;background:white;font-size:16px}.primary,.section-head button,.card button{border:0;border-radius:11px;padding:13px 16px;background:#175cd3;color:white;font-weight:600}.primary{width:100%;margin-top:12px}.section-head{display:flex;align-items:center;justify-content:space-between}.search{margin-bottom:12px}.tx{background:white;padding:14px;border-radius:14px;margin:8px 0;display:flex;justify-content:space-between;gap:10px}.tx small{display:block;color:#667085;margin-top:4px}.expense{color:#101828}.income{color:#067647}.tx button{border:0;background:none;color:#b42318}nav{position:fixed;bottom:0;left:0;right:0;margin:auto;max-width:620px;height:76px;background:#fff;border-top:1px solid #eaecf0;display:flex;justify-content:space-around;padding-bottom:env(safe-area-inset-bottom);z-index:5}nav button{flex:1;border:0;background:white;color:#667085;font-size:21px}nav button span{display:block;font-size:10px;margin-top:3px}nav button.active{color:#175cd3}.danger{background:#b42318!important;margin-top:10px} @media(prefers-color-scheme:dark){body{background:#0b1220;color:#f9fafb}.card,.hero-card,input,select,.month-row button,.seg .selected,nav,nav button{background:#111827;color:#f9fafb}.muted,.card span,.hero-card span,.tx small{color:#98a2b3}.seg{background:#1f2937}.progress{background:#344054}.tx{background:#111827}.month-row button{color:white}input,select{border-color:#344054}}
-
-.compact{gap:18px}.compact>div{min-width:0}.income-bar{background:#067647}.spend-bar{background:#175cd3}</style>
+*{box-sizing:border-box}body{margin:0;background:#0b1220;color:#f5f7fb;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh;padding-bottom:92px}.top{padding:42px 30px 18px}.eyebrow{letter-spacing:3px;color:#9aa6bb;font-size:13px}.title{font-size:42px;font-weight:800;margin:5px 0}.topbar{display:flex;justify-content:space-between;align-items:center}.plus{border:0;border-radius:50%;width:62px;height:62px;background:#1b2a44;color:#fff;font-size:40px}
+main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-title{font-size:28px;margin:25px 0 16px}.card{background:#121b2b;border-radius:28px;padding:25px;margin:14px 0}.hero{padding:30px}.muted{color:#9ba7ba}.big{font-size:42px;font-weight:800;margin:7px 0 10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.metric{background:#121b2b;border-radius:24px;padding:22px}.metric .value{font-size:25px;font-weight:800;margin-top:7px}.green{color:#0bb56a}.red{color:#f04438}.blue{color:#2684ff}.bar{height:14px;background:#344157;border-radius:20px;overflow:hidden;margin:16px 0}.bar i{display:block;height:100%;background:#2670e8;border-radius:20px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.input,select{width:100%;background:#111a29;border:1px solid #344157;border-radius:16px;padding:16px;color:#fff;margin:7px 0 16px;outline:none}.btn{border:0;border-radius:16px;padding:15px 20px;background:#2167dc;color:#fff;font-weight:700}.btn.secondary{background:#26344b}.btn.danger{background:#c93427}.btn.small{padding:10px 13px;font-size:14px}.tabs{display:flex;background:#121b2b;border-radius:16px;padding:4px;margin-bottom:18px}.tabs button{flex:1;border:0;background:transparent;color:#fff;padding:13px;border-radius:13px}.tabs button.on{background:#1e2b41;color:#2581ff}.transaction{background:#121b2b;border-radius:22px;padding:18px;margin:10px 0}.transaction .amount{font-weight:800;font-size:19px}.search{margin-bottom:12px}.nav{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#101a2a;border-top:1px solid #465064;padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr)}.nav button{border:0;background:transparent;color:#dce2ec;font-size:12px;padding:7px 2px}.nav button span{display:block;font-size:25px;margin-bottom:3px}.nav button.on{color:#2684ff}.pill{display:inline-block;background:#1d2b43;color:#aeb9cb;padding:7px 11px;border-radius:20px;font-size:13px}.chart{height:190px;display:flex;align-items:end;gap:8px;padding-top:20px}.col{flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;height:100%}.col i{display:block;width:80%;max-width:42px;background:#2670e8;border-radius:8px 8px 0 0;min-height:3px}.col small{color:#8f9aae;margin-top:7px}.goal{margin:12px 0;padding:18px;background:#172236;border-radius:20px}.notice{background:#18273e;border-left:4px solid #2684ff;padding:13px 15px;border-radius:12px;color:#c8d1df}.empty{text-align:center;color:#8f9aae;padding:30px}.linkbtn{border:0;background:none;color:#2684ff;padding:0}
+@media(min-width:700px){main{max-width:850px;margin:auto}.top{max-width:850px;margin:auto}.nav{max-width:850px;margin:auto}}
+</style>
 </head>
 <body>
-<div id="app">
-<header><div><p class="eyebrow">PERSONAL FINANCE</p><h1>My Money</h1></div><button class="icon" onclick="showAdd()">＋</button></header>
-
+<div class="app">
+<header class="top"><div class="topbar"><div><div class="eyebrow">PERSONAL FINANCE</div><div class="title">My Money</div></div><button class="plus" onclick="show('add')">+</button></div></header>
 <main>
 <section id="dashboard" class="screen active">
-  <div class="month-row"><button onclick="changeMonth(-1)">‹</button><h2 id="monthLabel"></h2><button onclick="changeMonth(1)">›</button></div>
-  <div class="hero-card"><span>Remaining</span><strong id="remaining"></strong><small id="savingsRate"></small></div>
-  <div class="grid2">
-    <div class="card"><span>Income</span><strong id="income"></strong></div>
-    <div class="card"><span>Spending</span><strong id="spending"></strong></div>
-  </div>
-  <div class="card"><h3>Budget status</h3><div class="progress"><i id="budgetBar"></i></div><div class="split"><span id="budgetUsed"></span><span id="budgetTotal"></span></div></div>
-  <div class="card"><h3>Spending by category</h3><div id="categoryChart" class="bars"></div></div>
-  <div class="card"><h3>Projection</h3><div class="split"><span>Projected monthly spending</span><strong id="projection"></strong></div><div class="split"><span>Projected monthly surplus</span><strong id="projectedSurplus"></strong></div><p class="muted">Based on your average daily spending this month.</p></div>
-  <div class="card"><h3>Compared with last month</h3><div class="grid2 compact"><div><span>Spending change</span><strong id="spendingChange"></strong></div><div><span>Surplus change</span><strong id="surplusChange"></strong></div></div><p id="comparisonText" class="muted"></p></div>
+<div class="section-title">Dashboard</div>
+<div class="card hero"><div class="muted">Current month balance</div><div class="big" id="balance">GYD 0</div><div id="savingsRate" class="green">Savings rate: 0%</div></div>
+<div class="grid"><div class="metric"><div class="muted">Income</div><div id="income" class="value">GYD 0</div></div><div class="metric"><div class="muted">Spending</div><div id="spending" class="value">GYD 0</div></div></div>
+<div class="card"><div class="row"><b>Budget status</b><span id="budgetLabel" class="muted">No budget set</span></div><div class="bar"><i id="budgetBar" style="width:0%"></i></div><div class="row"><span id="budgetUsed" class="muted">GYD 0 used</span><button class="linkbtn" onclick="show('settings')">Set budget</button></div></div>
+<div class="card"><b>Month outlook</b><div class="grid" style="margin-top:15px"><div><div class="muted">Projected spending</div><b id="projection">GYD 0</b></div><div><div class="muted">Projected surplus</div><b id="projectedSurplus">GYD 0</b></div></div><p id="monthChange" class="muted"></p></div>
+<div class="card"><b>Financial goals</b><div id="goalPreview"></div></div>
 </section>
 
 <section id="add" class="screen">
-  <h2>Add transaction</h2>
-  <div class="seg"><button id="expenseBtn" class="selected" onclick="setType('expense')">Expense</button><button id="incomeBtn" onclick="setType('income')">Income</button></div>
-  <label>Amount (GYD)<input id="amount" type="number" inputmode="decimal" placeholder="0"></label>
-  <label>Category<select id="category"></select></label>
-  <label>Date<input id="date" type="date"></label>
-  <label>Payment method<select id="method"><option>Bank</option><option>Cash</option><option>Card</option><option>Other</option></select></label>
-  <label>Note<input id="note" placeholder="Optional"></label>
-  <button class="primary" onclick="saveTransaction()">Save transaction</button>
+<div class="section-title">Add transaction</div>
+<div class="tabs"><button id="expenseTab" class="on" onclick="setType('expense')">Expense</button><button id="incomeTab" onclick="setType('income')">Income</button></div>
+<label class="muted">Amount (GYD)</label><input id="amount" class="input" type="number" min="0" placeholder="0">
+<label class="muted">Category</label><select id="category" class="input"></select>
+<label class="muted">Date</label><input id="date" class="input" type="date">
+<label class="muted">Payment method</label><select id="method" class="input"><option>Cash</option><option>Bank</option><option>Card</option><option>Transfer</option><option>Other</option></select>
+<label class="muted">Note</label><input id="note" class="input" placeholder="Optional">
+<button class="btn" style="width:100%" onclick="saveTransaction()">Save transaction</button>
 </section>
 
 <section id="transactions" class="screen">
-  <div class="section-head"><h2>Transactions</h2><button onclick="showAdd()">Add</button></div>
-  <input id="search" class="search" placeholder="Search transactions" oninput="renderTransactions()">
-  <div id="transactionList"></div>
+<div class="section-title">Transactions</div>
+<input id="search" class="input search" placeholder="Search transactions" oninput="renderTransactions()">
+<div id="transactionList"></div>
 </section>
 
 <section id="insights" class="screen">
-  <h2>Insights</h2>
-  <div class="card"><h3>6-month spending trend</h3><div id="monthlyChart" class="bars"></div><p class="muted">Your monthly expenses for the last six months.</p></div>
-  <div class="grid2">
-    <div class="card"><span>Average monthly spend</span><strong id="avgSpend"></strong></div>
-    <div class="card"><span>Average monthly income</span><strong id="avgIncome"></strong></div>
-  </div>
-  <div class="card"><h3>Current month snapshot</h3><div class="split"><span>Average daily spending</span><strong id="avgDaily"></strong></div><div class="split"><span>Top category</span><strong id="topCategory"></strong></div><div class="split"><span>Largest expense</span><strong id="largestExpense"></strong></div></div>
-  <div class="card"><h3>Income vs spending</h3><div id="incomeSpendChart" class="bars"></div><p class="muted">Income and spending for the last six months.</p></div>
-  <div class="card"><h3>Savings goal</h3><label>Goal amount (GYD)<input id="goalAmount" type="number" oninput="saveGoal()"></label><div class="progress"><i id="goalBar"></i></div><div class="split"><span id="goalSaved"></span><span id="goalTarget"></span></div></div>
+<div class="section-title">Insights</div>
+<div class="card"><div class="row"><b>6-month spending trend</b><span class="pill">Spending</span></div><div id="spendChart" class="chart"></div></div>
+<div class="card"><b>Income vs spending</b><div id="incomeChart" class="chart"></div></div>
+<div class="grid"><div class="metric"><div class="muted">Avg monthly spending</div><div id="avgSpend" class="value">GYD 0</div></div><div class="metric"><div class="muted">Avg monthly income</div><div id="avgIncome" class="value">GYD 0</div></div><div class="metric"><div class="muted">Top category</div><div id="topCat" class="value">—</div></div><div class="metric"><div class="muted">Largest expense</div><div id="largest" class="value">GYD 0</div></div></div>
+<div class="card"><b>What changed?</b><p id="insightText" class="muted"></p></div>
+</section>
+
+<section id="goals" class="screen">
+<div class="section-title">Financial Goals</div>
+<div class="card"><label class="muted">Goal name</label><input id="goalName" class="input" placeholder="e.g. Emergency fund"><label class="muted">Target amount (GYD)</label><input id="goalTarget" class="input" type="number" placeholder="1500000"><label class="muted">Already saved (GYD)</label><input id="goalSaved" class="input" type="number" placeholder="0"><label class="muted">Target date</label><input id="goalDate" class="input" type="date"><button class="btn" onclick="addGoal()">Create goal</button></div>
+<div id="goalList"></div>
+</section>
+
+<section id="history" class="screen">
+<div class="section-title">Monthly History</div>
+<label class="muted">Select month</label><input id="historyMonth" class="input" type="month" onchange="renderHistory()">
+<div id="historyBody"></div>
+</section>
+
+<section id="recurring" class="screen">
+<div class="section-title">Recurring transactions</div>
+<div class="notice">Set up regular income or expenses such as salary, rent, utilities and subscriptions. The app will show them in your forecast; you can also create the transaction when it is due.</div>
+<div class="card"><div class="tabs"><button id="recExpense" class="on" onclick="setRecType('expense')">Expense</button><button id="recIncome" onclick="setRecType('income')">Income</button></div>
+<label class="muted">Description</label><input id="recName" class="input" placeholder="Rent / Salary"><label class="muted">Amount (GYD)</label><input id="recAmount" class="input" type="number"><label class="muted">Category</label><select id="recCategory" class="input"></select><label class="muted">Frequency</label><select id="recFreq" class="input"><option value="monthly">Monthly</option><option value="weekly">Weekly</option><option value="yearly">Yearly</option></select><label class="muted">Next date</label><input id="recDate" class="input" type="date"><button class="btn" onclick="addRecurring()">Add recurring</button></div>
+<div id="recList"></div>
 </section>
 
 <section id="settings" class="screen">
-  <h2>Settings</h2>
-  <div class="card"><h3>Data</h3><button onclick="exportData()">Export backup</button><button class="danger" onclick="clearData()">Delete all data</button></div>
-  <div class="card"><h3>Currency</h3><p>Primary currency: <strong>GYD</strong></p></div>
-  <div class="card"><h3>About</h3><p>My Money — Version 1.1</p><p class="muted">Local-only personal finance tracker.</p></div>
+<div class="section-title">Settings</div>
+<div class="card"><b>Monthly budget</b><input id="budgetInput" class="input" type="number" placeholder="GYD"><button class="btn" onclick="saveBudget()">Save budget</button></div>
+<div class="card"><b>Data</b><p class="muted">Your data stays on this device/browser.</p><button class="btn secondary" onclick="exportData()">Export backup</button> <button class="btn danger" onclick="deleteData()">Delete all data</button></div>
+<div class="card"><b>About</b><p>My Money — Version 1.2</p><p class="muted">Local-only personal finance tracker.</p></div>
 </section>
 </main>
-
-<nav>
-<button class="active" onclick="show('dashboard',this)">⌂<span>Dashboard</span></button>
-<button onclick="show('add',this)">＋<span>Add</span></button>
-<button onclick="show('transactions',this)">☷<span>Transactions</span></button>
-<button onclick="show('insights',this)">▥<span>Insights</span></button>
-<button onclick="show('settings',this)">⚙<span>Settings</span></button>
+<nav class="nav">
+<button data-screen="dashboard" class="on" onclick="show('dashboard')"><span>⌂</span>Dashboard</button>
+<button data-screen="add" onclick="show('add')"><span>＋</span>Add</button>
+<button data-screen="transactions" onclick="show('transactions')"><span>☷</span>Transactions</button>
+<button data-screen="insights" onclick="show('insights')"><span>▥</span>Insights</button>
+<button data-screen="more" onclick="show('history')"><span>◫</span>More</button>
 </nav>
 </div>
 <script>
-const CATS=['Food','Transport','Bills','Shopping','Entertainment','Business','Savings','Other'];
-let data=JSON.parse(localStorage.getItem('mymoney')||'{"transactions":[],"goal":0,"budget":0}');
-if(!Array.isArray(data.transactions))data.transactions=[];
-let type='expense',viewMonth=new Date();
-const money=n=>new Intl.NumberFormat('en-GY',{maximumFractionDigits:0}).format(Number(n)||0);
-const key=d=>{const x=new Date(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')};
-const monthName=d=>d.toLocaleDateString('en-US',{month:'long',year:'numeric'});
-function save(){localStorage.setItem('mymoney',JSON.stringify(data));renderAll()}
-function show(id,btn){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));if(btn)btn.classList.add('active');renderAll()}
-function showAdd(){show('add',document.querySelectorAll('nav button')[1])}
-function setType(t){type=t;expenseBtn.classList.toggle('selected',t==='expense');incomeBtn.classList.toggle('selected',t==='income')}
-function changeMonth(n){viewMonth.setMonth(viewMonth.getMonth()+n);renderAll()}
-function monthTx(d=viewMonth){return data.transactions.filter(t=>key(t.date)===key(d))}
-function totals(d=viewMonth){const a=monthTx(d);return{income:a.filter(x=>x.type==='income').reduce((s,x)=>s+x.amount,0),expense:a.filter(x=>x.type==='expense').reduce((s,x)=>s+x.amount,0)}}
+const KEY='mymoney';
+let data=load();
+let type='expense', recType='expense';
+const cats=['Housing','Transportation','Groceries','Food','Utilities','Entertainment','Shopping','Health','Debt','Savings','Business','Other'];
+function load(){
+ try{
+  const x=JSON.parse(localStorage.getItem(KEY)||'null');
+  if(x && Array.isArray(x.transactions)) return {...x,goals:x.goals||[],recurring:x.recurring||[],budget:x.budget||0};
+ }catch(e){}
+ return {transactions:[],goals:[],recurring:[],budget:0};
+}
+function persist(){localStorage.setItem(KEY,JSON.stringify(data));}
+function money(n){return 'GYD '+Math.round(n||0).toLocaleString('en-US')}
+function isoToday(){return new Date().toISOString().slice(0,10)}
+function monthKey(d){return String(d).slice(0,7)}
+function monthLabel(k){let [y,m]=k.split('-');return new Date(+y,+m-1,1).toLocaleString('en-US',{month:'short',year:'numeric'})}
+function show(id){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ const target=document.getElementById(id); if(target)target.classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('on',b.dataset.screen===id));
+ if(id==='dashboard')renderDashboard();
+ if(id==='transactions')renderTransactions();
+ if(id==='insights')renderInsights();
+ if(id==='goals')renderGoals();
+ if(id==='history'){document.getElementById('historyMonth').value ||= monthKey(isoToday());renderHistory()}
+ if(id==='recurring')renderRecurring();
+}
+function setType(t){type=t;expenseTab.classList.toggle('on',t==='expense');incomeTab.classList.toggle('on',t==='income');}
+function fillCats(){
+ category.innerHTML=cats.map(c=>`<option>${c}</option>`).join('');
+ recCategory.innerHTML=cats.map(c=>`<option>${c}</option>`).join('');
+}
+function saveTransaction(){
+ const amountN=Number(document.getElementById('amount').value);
+ if(!amountN)return alert('Enter an amount.');
+ data.transactions.push({id:Date.now(),type,amount:amountN,category:category.value,date:date.value||isoToday(),method:method.value,note:note.value||''});
+ persist(); amount.value='';note.value='';show('dashboard');
+}
+function totals(k){
+ const a=data.transactions.filter(t=>monthKey(t.date)===k);
+ return {income:a.filter(t=>t.type==='income').reduce((s,t)=>s+t.amount,0),spend:a.filter(t=>t.type==='expense').reduce((s,t)=>s+t.amount,0),items:a};
+}
+function daysInMonth(k){let [y,m]=k.split('-').map(Number);return new Date(y,m,0).getDate()}
+function recurringMonthly(k){
+ let inc=0,exp=0;
+ data.recurring.forEach(r=>{
+  let mult=r.freq==='weekly'?4.345:r.freq==='yearly'?(1/12):1;
+  if(r.type==='income')inc+=r.amount*mult;else exp+=r.amount*mult;
+ });
+ return {inc,exp};
+}
 function renderDashboard(){
- monthLabel.textContent=monthName(viewMonth);const t=totals();income.textContent='GYD '+money(t.income);spending.textContent='GYD '+money(t.expense);remaining.textContent='GYD '+money(t.income-t.expense);
- savingsRate.textContent=t.income?'Savings rate: '+Math.round((t.income-t.expense)/t.income*100)+'%':'Add income to calculate savings rate';
- const budget=Number(data.budget)||0;budgetUsed.textContent='GYD '+money(t.expense)+' used';budgetTotal.textContent=budget?'GYD '+money(budget):'No budget set';budgetBar.style.width=budget?Math.min(100,t.expense/budget*100)+'%':'0%';
- const days=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+1,0).getDate();const now=new Date();const isCurrent=viewMonth.getFullYear()===now.getFullYear()&&viewMonth.getMonth()===now.getMonth();const elapsed=isCurrent?now.getDate():days;
- const projected=elapsed?t.expense/elapsed*days:t.expense;projection.textContent='GYD '+money(projected);projectedSurplus.textContent='GYD '+money(t.income-projected);
- renderCategory();renderComparison();
+ const k=monthKey(isoToday()), t=totals(k), bal=t.income-t.spend, rate=t.income?t.income/t.income-t.spend/t.income:0;
+ income.textContent=money(t.income);spending.textContent=money(t.spend);balance.textContent=money(bal);
+ savingsRate.textContent='Savings rate: '+Math.max(0,Math.round((t.income?t.income-t.spend:0)/(t.income||1)*100))+'%';
+ const pct=data.budget?Math.min(100,t.spend/data.budget*100):0;
+ budgetBar.style.width=pct+'%';budgetLabel.textContent=data.budget?money(data.budget):'No budget set';budgetUsed.textContent=money(t.spend)+' used';
+ const day=Math.max(1,new Date().getDate()), proj=t.spend/daysInMonth(k)*daysInMonth(k);
+ projection.textContent=money(proj);projectedSurplus.textContent=money(t.income-proj);
+ const prev=new Date();prev.setMonth(prev.getMonth()-1);const pk=monthKey(prev),p=totals(pk);
+ monthChange.textContent=p.spend?'Spending vs last month: '+(t.spend-p.spend>=0?'+':'')+money(t.spend-p.spend):'No previous-month spending data yet.';
+ goalPreview.innerHTML=data.goals.length?data.goals.slice(0,2).map(g=>goalHTML(g)).join(''):'<p class="muted">No goals yet. <button class="linkbtn" onclick="show('goals')">Create one</button></p>';
 }
-function renderCategory(){const t=monthTx().filter(x=>x.type==='expense');const sums={};t.forEach(x=>sums[x.category]=(sums[x.category]||0)+x.amount);const max=Math.max(1,...Object.values(sums));categoryChart.innerHTML=Object.entries(sums).sort((a,b)=>b[1]-a[1]).slice(0,8).map(([c,v])=>`<div class="bar-wrap"><b>${money(v)}</b><div class="bar" style="height:${Math.max(4,v/max*125)}px"></div><small>${c}</small></div>`).join('')||'<p class="muted">No spending recorded for this month.</p>'}
-function previousMonth(){const d=new Date(viewMonth);d.setMonth(d.getMonth()-1);return d}
-function pctChange(current,previous){if(previous===0)return current===0?0:null;return (current-previous)/previous*100}
-function renderComparison(){const cur=totals(viewMonth),prev=totals(previousMonth());const sc=pctChange(cur.expense,prev.expense),ss=pctChange(cur.income-cur.expense,prev.income-prev.expense);spendingChange.textContent=sc===null?'New':(sc>0?'+':'')+Math.round(sc)+'%';surplusChange.textContent=ss===null?'New':(ss>0?'+':'')+Math.round(ss)+'%';let text='No spending recorded last month.';if(prev.expense||prev.income){text=sc===null?'You spent this month; last month had no spending data.':sc>0?'Spending is higher than last month.':sc<0?'Spending is lower than last month.':'Spending is the same as last month.'}comparisonText.textContent=text}
-function renderTransactions(){const q=(search.value||'').toLowerCase();transactionList.innerHTML=data.transactions.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).filter(t=>(t.category+' '+t.note+' '+t.method).toLowerCase().includes(q)).map(t=>`<div class="tx"><div><b>${t.category}</b><small>${t.date}${t.note?' · '+t.note:''} · ${t.method}</small></div><div class="${t.type}"><b>${t.type==='expense'?'-':'+'} GYD ${money(t.amount)}</b><br><button onclick="delTx('${t.id}')">Delete</button></div></div>`).join('')||'<p class="muted">No transactions yet.</p>'}
-function lastSixMonths(){const months=[];for(let i=5;i>=0;i--){const d=new Date();d.setDate(1);d.setMonth(d.getMonth()-i);months.push(d)}return months}
+function goalHTML(g){
+ const pct=Math.min(100,g.target?g.saved/g.target*100:0);
+ return `<div class="goal"><div class="row"><b>${esc(g.name)}</b><span>${Math.round(pct)}%</span></div><div class="bar"><i style="width:${pct}%"></i></div><div class="row"><span class="muted">${money(g.saved)} / ${money(g.target)}</span><span class="muted">${g.date||''}</span></div></div>`;
+}
+function renderTransactions(){
+ const q=(search.value||'').toLowerCase();
+ const arr=data.transactions.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id).filter(t=>JSON.stringify(t).toLowerCase().includes(q));
+ transactionList.innerHTML=arr.length?arr.map(t=>`<div class="transaction"><div class="row"><b>${esc(t.category)}</b><span class="${t.type==='income'?'green':'red'} amount">${t.type==='income'?'+':'-'} ${money(t.amount)}</span></div><div class="muted">${t.date} · ${esc(t.method)}${t.note?' · '+esc(t.note):''}</div><button class="linkbtn" onclick="delTx(${t.id})">Delete</button></div>`).join(''):'<div class="empty">No transactions found.</div>';
+}
+function delTx(id){if(confirm('Delete this transaction?')){data.transactions=data.transactions.filter(t=>t.id!==id);persist();renderTransactions();renderDashboard();}}
+function sixMonths(){
+ const out=[];let d=new Date();d.setDate(1);
+ for(let i=5;i>=0;i--){let x=new Date(d);x.setMonth(d.getMonth()-i);out.push(monthKey(x))}
+ return out;
+}
 function renderInsights(){
- const months=lastSixMonths();const vals=months.map(d=>totals(d));const spends=vals.map(x=>x.expense);const incomes=vals.map(x=>x.income);const max=Math.max(1,...spends);
- monthlyChart.innerHTML=months.map((d,i)=>`<div class="bar-wrap"><b>${money(spends[i])}</b><div class="bar" style="height:${Math.max(4,spends[i]/max*125)}px"></div><small>${d.toLocaleDateString('en-US',{month:'short'})}</small></div>`).join('');
- const avgS=spends.reduce((a,b)=>a+b,0)/6,avgI=incomes.reduce((a,b)=>a+b,0)/6;avgSpend.textContent='GYD '+money(avgS);avgIncome.textContent='GYD '+money(avgI);
- const cur=totals(),days=new Date(viewMonth.getFullYear(),viewMonth.getMonth()+1,0).getDate(),now=new Date(),isCurrent=viewMonth.getFullYear()===now.getFullYear()&&viewMonth.getMonth()===now.getMonth(),elapsed=isCurrent?now.getDate():days;avgDaily.textContent='GYD '+money(elapsed?cur.expense/elapsed:0);
- const ex=monthTx().filter(x=>x.type==='expense'), sums={};ex.forEach(x=>sums[x.category]=(sums[x.category]||0)+x.amount);const top=Object.entries(sums).sort((a,b)=>b[1]-a[1])[0];topCategory.textContent=top?top[0]+' · GYD '+money(top[1]):'—';const largest=ex.sort((a,b)=>b.amount-a.amount)[0];largestExpense.textContent=largest?'GYD '+money(largest.amount):'—';
- const maxBoth=Math.max(1,...incomes,...spends);incomeSpendChart.innerHTML=months.map((d,i)=>`<div class="bar-wrap"><b>${money(incomes[i])}</b><div class="bar income-bar" style="height:${Math.max(4,incomes[i]/maxBoth*125)}px"></div><small>${d.toLocaleDateString('en-US',{month:'short'})}</small></div><div class="bar-wrap"><b>${money(spends[i])}</b><div class="bar spend-bar" style="height:${Math.max(4,spends[i]/maxBoth*125)}px"></div><small>Spend</small></div>`).join('');
- goalAmount.value=data.goal||'';const saved=Math.max(0,totals().income-totals().expense);goalSaved.textContent='Current monthly surplus: GYD '+money(saved);goalTarget.textContent='Goal: GYD '+money(data.goal||0);goalBar.style.width=data.goal?Math.min(100,saved/data.goal*100)+'%':'0%';
+ const ks=sixMonths(), vals=ks.map(k=>totals(k)), max=Math.max(1,...vals.map(x=>x.spend));
+ spendChart.innerHTML=vals.map((v,i)=>`<div class="col"><b>${Math.round(v.spend/1000)}k</b><i style="height:${Math.max(3,v.spend/max*130)}px"></i><small>${ks[i].slice(5)}</small></div>`).join('');
+ const max2=Math.max(1,...vals.flatMap(v=>[v.income,v.spend]));
+ incomeChart.innerHTML=vals.map((v,i)=>`<div class="col"><b>${Math.round(v.income/1000)}k</b><i style="height:${Math.max(3,v.income/max2*130)}px"></i><small>${ks[i].slice(5)}</small></div>`).join('');
+ avgSpend.textContent=money(vals.reduce((s,v)=>s+v.spend,0)/6);avgIncome.textContent=money(vals.reduce((s,v)=>s+v.income,0)/6);
+ const cur=totals(ks[5]);const counts={};cur.items.filter(t=>t.type==='expense').forEach(t=>counts[t.category]=(counts[t.category]||0)+t.amount);
+ const top=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];topCat.textContent=top?top[0]:'—';
+ const largestT=cur.items.filter(t=>t.type==='expense').sort((a,b)=>b.amount-a.amount)[0];largest.textContent=largestT?money(largestT.amount):'GYD 0';
+ const prev=vals[4];const delta=cur.spend-prev.spend;insightText.textContent=prev.spend?`This month you are spending ${money(Math.abs(delta))} ${delta>=0?'more':'less'} than last month.`:'Add more history to get a month-over-month comparison.';
 }
-function renderAll(){renderDashboard();renderTransactions();renderInsights()}
-function saveTransaction(){const value=Number(amount.value);if(!value)return alert('Enter an amount.');data.transactions.push({id:crypto.randomUUID(),type,amount:value,category:category.value,date:date.value||new Date().toISOString().slice(0,10),method:method.value,note:note.value.trim()});amount.value='';note.value='';save();show('dashboard',document.querySelector('nav button'))}
-function delTx(id){data.transactions=data.transactions.filter(x=>x.id!==id);save()}
-function saveGoal(){data.goal=Number(goalAmount.value)||0;localStorage.setItem('mymoney',JSON.stringify(data));renderInsights()}
-function exportData(){const backup={app:'My Money',version:'1.1',exportedAt:new Date().toISOString(),data};const blob=new Blob([JSON.stringify(backup,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-money-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click()}
-function clearData(){if(confirm('Delete all My Money data? This cannot be undone unless you have a backup.')){data={transactions:[],goal:0,budget:0};save()}}
-category.innerHTML=CATS.map(x=>`<option>${x}</option>`).join('');date.value=new Date().toISOString().slice(0,10);renderAll();
-
+function addGoal(){
+ const n=goalName.value.trim(),t=Number(goalTarget.value),s=Number(goalSaved.value)||0;
+ if(!n||!t)return alert('Enter a goal name and target amount.');
+ data.goals.push({id:Date.now(),name:n,target:t,saved:s,date:goalDate.value||''});persist();goalName.value='';goalTarget.value='';goalSaved.value='';renderGoals();
+}
+function renderGoals(){goalList.innerHTML=data.goals.length?data.goals.map(g=>`<div class="card">${goalHTML(g)}<button class="btn small danger" onclick="delGoal(${g.id})">Delete</button></div>`).join(''):'<div class="empty">No goals yet.</div>'}
+function delGoal(id){data.goals=data.goals.filter(g=>g.id!==id);persist();renderGoals();renderDashboard();}
+function renderHistory(){
+ const k=historyMonth.value||monthKey(isoToday()),t=totals(k),pct=t.income?Math.round((t.income-t.spend)/t.income*100):0;
+ const counts={};t.items.filter(x=>x.type==='expense').forEach(x=>counts[x.category]=(counts[x.category]||0)+x.amount);
+ historyBody.innerHTML=`<div class="grid"><div class="metric"><div class="muted">Income</div><div class="value">${money(t.income)}</div></div><div class="metric"><div class="muted">Spending</div><div class="value">${money(t.spend)}</div></div><div class="metric"><div class="muted">Surplus</div><div class="value">${money(t.income-t.spend)}</div></div><div class="metric"><div class="muted">Savings rate</div><div class="value">${pct}%</div></div></div><div class="card"><b>${monthLabel(k)} category breakdown</b>${Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([c,v])=>`<div style="margin-top:16px"><div class="row"><span>${esc(c)}</span><span>${money(v)}</span></div><div class="bar"><i style="width:${Math.min(100,v/Math.max(1,t.spend)*100)}%"></i></div></div>`).join('')||'<p class="muted">No expenses recorded.</p>'}</div><div class="card"><b>Transactions</b><p class="muted">${t.items.length} transactions in this month.</p></div>`;
+}
+function setRecType(t){recType=t;recExpense.classList.toggle('on',t==='expense');recIncome.classList.toggle('on',t==='income')}
+function addRecurring(){
+ const n=recName.value.trim(),a=Number(recAmount.value);
+ if(!n||!a)return alert('Enter a description and amount.');
+ data.recurring.push({id:Date.now(),name:n,amount:a,type:recType,category:recCategory.value,freq:recFreq.value,date:recDate.value||isoToday()});persist();recName.value='';recAmount.value='';renderRecurring();
+}
+function renderRecurring(){recList.innerHTML=data.recurring.length?data.recurring.map(r=>`<div class="transaction"><div class="row"><b>${esc(r.name)}</b><span class="${r.type==='income'?'green':'red'}">${r.type==='income'?'+':'-'} ${money(r.amount)}</span></div><div class="muted">${r.freq} · next ${r.date} · ${esc(r.category)}</div><button class="linkbtn" onclick="delRecurring(${r.id})">Delete</button></div>`).join(''):'<div class="empty">No recurring transactions yet.</div>'}
+function delRecurring(id){data.recurring=data.recurring.filter(r=>r.id!==id);persist();renderRecurring()}
+function saveBudget(){data.budget=Number(budgetInput.value)||0;persist();renderDashboard();alert('Budget saved.')}
+function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-money-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500)}
+function deleteData(){if(confirm('Delete ALL My Money data on this device?')){localStorage.removeItem(KEY);data=load();renderDashboard();alert('All data deleted.')}}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+fillCats();date.value=isoToday();recDate.value=isoToday();historyMonth.value=monthKey(isoToday());renderDashboard();
 </script>
 </body></html>
