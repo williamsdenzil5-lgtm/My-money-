@@ -12,6 +12,32 @@
 button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh;padding-bottom:92px}.top{padding:42px 30px 18px}.eyebrow{letter-spacing:3px;color:#9aa6bb;font-size:13px}.title{font-size:42px;font-weight:800;margin:5px 0}.topbar{display:flex;justify-content:space-between;align-items:center}.plus{border:0;border-radius:50%;width:62px;height:62px;background:#1b2a44;color:#fff;font-size:40px}
 main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-title{font-size:28px;margin:25px 0 16px}.card{background:#121b2b;border-radius:28px;padding:25px;margin:14px 0}.hero{padding:30px}.muted{color:#9ba7ba}.big{font-size:42px;font-weight:800;margin:7px 0 10px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.metric{background:#121b2b;border-radius:24px;padding:22px}.metric .value{font-size:25px;font-weight:800;margin-top:7px}.green{color:#0bb56a}.red{color:#f04438}.blue{color:#2684ff}.bar{height:14px;background:#344157;border-radius:20px;overflow:hidden;margin:16px 0}.bar i{display:block;height:100%;background:#2670e8;border-radius:20px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.input,select{width:100%;background:#111a29;border:1px solid #344157;border-radius:16px;padding:16px;color:#fff;margin:7px 0 16px;outline:none}.btn{border:0;border-radius:16px;padding:15px 20px;background:#2167dc;color:#fff;font-weight:700}.btn.secondary{background:#26344b}.btn.danger{background:#c93427}.btn.small{padding:10px 13px;font-size:14px}.tabs{display:flex;background:#121b2b;border-radius:16px;padding:4px;margin-bottom:18px}.tabs button{flex:1;border:0;background:transparent;color:#fff;padding:13px;border-radius:13px}.tabs button.on{background:#1e2b41;color:#2581ff}.transaction{background:#121b2b;border-radius:22px;padding:18px;margin:10px 0}.transaction .amount{font-weight:800;font-size:19px}.search{margin-bottom:12px}.nav{position:fixed;z-index:5;bottom:0;left:0;right:0;background:#101a2a;border-top:1px solid #465064;padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr)}.nav button{border:0;background:transparent;color:#dce2ec;font-size:12px;padding:7px 2px}.nav button span{display:block;font-size:25px;margin-bottom:3px}.nav button.on{color:#2684ff}.pill{display:inline-block;background:#1d2b43;color:#aeb9cb;padding:7px 11px;border-radius:20px;font-size:13px}.chart{height:190px;display:flex;align-items:end;gap:8px;padding-top:20px}.col{flex:1;display:flex;flex-direction:column;justify-content:end;align-items:center;height:100%}.col i{display:block;width:80%;max-width:42px;background:#2670e8;border-radius:8px 8px 0 0;min-height:3px}.col small{color:#8f9aae;margin-top:7px}.goal{margin:12px 0;padding:18px;background:#172236;border-radius:20px}.notice{background:#18273e;border-left:4px solid #2684ff;padding:13px 15px;border-radius:12px;color:#c8d1df}.empty{text-align:center;color:#8f9aae;padding:30px}.linkbtn{border:0;background:none;color:#2684ff;padding:0}
 @media(min-width:700px){main{max-width:850px;margin:auto}.top{max-width:850px;margin:auto}.nav{max-width:850px;margin:auto}}
+
+/* V1.4 polish */
+.more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.more-card{cursor:pointer;min-height:92px;display:flex;flex-direction:column;justify-content:center}
+.more-card .mi{font-size:25px;margin-bottom:7px}
+.more-card .mt{font-weight:800}
+.more-card .ms{font-size:12px;opacity:.65;margin-top:3px}
+.quick-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.upcoming{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.upcoming:last-child{border-bottom:0}
+.upcoming .left{min-width:0}
+.upcoming .desc{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.upcoming .meta{font-size:12px;opacity:.62;margin-top:3px}
+.upcoming .amt{font-weight:850;white-space:nowrap}
+.badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:800;background:rgba(255,255,255,.08)}
+.overdue{background:rgba(255,90,90,.15);color:#ff9b9b}
+.due-soon{background:rgba(255,190,70,.14);color:#ffd27a}
+.on-track{background:rgba(80,210,140,.14);color:#91e8b1}
+.empty{text-align:center;opacity:.6;padding:20px 8px}
+.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%) translateY(15px);background:#202020;color:#fff;padding:11px 15px;border-radius:12px;font-size:13px;font-weight:700;z-index:9999;opacity:0;pointer-events:none;transition:.22s;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.bottom-nav .nav.more-nav{font-size:12px}
+.file-input{display:none}
+.backup-box{border:1px dashed rgba(255,255,255,.15);padding:14px;border-radius:14px}
+@media(max-width:420px){.more-grid{gap:9px}.more-card{min-height:84px}}
+
 </style>
 </head>
 <body>
@@ -90,6 +116,41 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 <div class="card"><b>Score breakdown</b><div id="healthBreakdown"></div></div>
 </section>
 
+
+<section id="more" class="screen">
+  <div class="topbar"><div><div class="eyebrow">MY MONEY</div><h1>More</h1></div></div>
+
+  <div class="card">
+    <h2>Everything in one place</h2>
+    <p class="muted">Access goals, recurring payments, history, backups and settings.</p>
+    <div class="more-grid">
+      <button class="card more-card" onclick="show('goals')"><div class="mi">🎯</div><div class="mt">Goals</div><div class="ms">Track savings targets</div></button>
+      <button class="card more-card" onclick="show('recurring')"><div class="mi">🔁</div><div class="mt">Recurring</div><div class="ms">Bills & regular income</div></button>
+      <button class="card more-card" onclick="show('history')"><div class="mi">📅</div><div class="mt">History</div><div class="ms">Monthly breakdowns</div></button>
+      <button class="card more-card" onclick="show('settings')"><div class="mi">⚙️</div><div class="mt">Settings</div><div class="ms">Budget & preferences</div></button>
+      <button class="card more-card" onclick="show('health')"><div class="mi">♥</div><div class="mt">Financial Health</div><div class="ms">Check your score & habits</div></button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Backup & Restore</h2>
+    <p class="muted">Keep a copy of your transactions, goals, recurring items and settings.</p>
+    <div class="quick-row">
+      <button class="btn" onclick="exportBackup()">Export Backup</button>
+      <button class="btn secondary" onclick="document.getElementById('restoreFile').click()">Restore Backup</button>
+    </div>
+    <input id="restoreFile" class="file-input" type="file" accept=".json,application/json" onchange="restoreBackup(event)">
+    <div class="backup-box" style="margin-top:12px">
+      <div class="small">Backups stay on your device unless you choose to share the exported file.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>V1.4</h2>
+    <p class="muted">Navigation, recurring automation, backup & restore, dashboard improvements and interface polish.</p>
+  </div>
+</section>
+
 <section id="settings" class="screen">
 <div class="section-title">Settings</div>
 <div class="card"><b>Monthly budget</b><input id="budgetInput" class="input" type="number" placeholder="GYD"><button class="btn" onclick="saveBudget()">Save budget</button></div>
@@ -113,7 +174,7 @@ main{padding:0 30px}.screen{display:none}.screen.active{display:block}.section-t
 <button data-screen="add" onclick="show('add')"><span>＋</span>Add</button>
 <button data-screen="transactions" onclick="show('transactions')"><span>☷</span>Transactions</button>
 <button data-screen="insights" onclick="show('insights')"><span>▥</span>Insights</button>
-<button data-screen="health" onclick="show('health')"><span>♥</span>Health</button>
+<button data-screen="more" onclick="show('more')"><span>•••</span>More</button>
 </nav>
 </div>
 <script>
@@ -263,5 +324,152 @@ function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:'a
 function deleteData(){if(confirm('Delete ALL My Money data on this device?')){localStorage.removeItem(KEY);data=load();renderDashboard();alert('All data deleted.')}}
 function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 fillCats();populateTransactionFilters();date.value=isoToday();recDate.value=isoToday();historyMonth.value=monthKey(isoToday());renderDashboard();
+
+function injectV14Dashboard(){
+  const d=document.getElementById('dashboard');
+  if(!d || d.querySelector('.v14-upcoming'))return;
+  const card=document.createElement('div');
+  card.className='card v14-upcoming';
+  card.innerHTML='<h2>Upcoming</h2><div id="v14UpcomingList"></div>';
+  d.appendChild(card);
+  renderV14Upcoming();
+}
+function renderV14Upcoming(){
+  const el=document.getElementById('v14UpcomingList'); if(!el)return;
+  const arr=(Array.isArray(data.recurring)?data.recurring:[]).map(x=>({x,d:nextOccurrence(x)}))
+    .filter(o=>o.d).sort((a,b)=>a.d-b.d).slice(0,5);
+  if(!arr.length){el.innerHTML='<div class="empty">No recurring items yet.</div>';return;}
+  el.innerHTML=arr.map(o=>{
+    const x=o.x;
+    const sign=x.type==='income'?'+':'−';
+    return `<div class="upcoming"><div class="left"><div class="desc">${esc(x.description||'Recurring')}</div><div class="meta">${recurringDueLabel(x)} · ${esc(x.frequency||'monthly')} ${recurringStatus(x)}</div></div><div class="amt">${sign}${money(Number(x.amount)||0)}</div></div>`;
+  }).join('');
+}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+try{
+  const oldRender=window.render;
+  if(typeof oldRender==='function'){
+    window.render=function(){oldRender.apply(this,arguments);injectV14Dashboard();renderV14Upcoming();}
+  }else{
+    setTimeout(injectV14Dashboard,100);
+  }
+}catch(e){}
+
+
+/* ===== V1.4 ===== */
+function showToast(msg){
+  let t=document.getElementById('toast');
+  if(!t){t=document.createElement('div');t.id='toast';t.className='toast';document.body.appendChild(t);}
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(window.__toastTimer);window.__toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+function exportBackup(){
+  try{
+    const payload={...data, backupVersion:4, exportedAt:new Date().toISOString()};
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download='MyMoney_Backup_'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+    showToast('Backup exported');
+  }catch(e){alert('Could not export the backup.');}
+}
+
+function restoreBackup(ev){
+  const file=ev.target.files && ev.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(){
+    try{
+      const incoming=JSON.parse(reader.result);
+      if(!incoming || typeof incoming!=='object' || !Array.isArray(incoming.transactions)){
+        throw new Error('Invalid backup');
+      }
+      if(!confirm('Restore this backup? Your current My Money data will be replaced.')) return;
+      data=incoming;
+      if(!Array.isArray(data.transactions))data.transactions=[];
+      if(!Array.isArray(data.goals))data.goals=[];
+      if(!Array.isArray(data.recurring))data.recurring=[];
+      if(typeof data.budget!=='number')data.budget=0;
+      if(!data.goal || typeof data.goal!=='object')data.goal={name:'',amount:Number(data.goal)||0,date:''};
+      localStorage.setItem(KEY,JSON.stringify(data));
+      if(typeof render==='function')render();
+      showToast('Backup restored');
+    }catch(e){alert('That file is not a valid My Money backup.');}
+    ev.target.value='';
+  };
+  reader.readAsText(file);
+}
+
+/* Convert a recurring item's due date into the next due date after today. */
+function nextOccurrence(item){
+  const base=new Date(item.nextDate||item.date||new Date());
+  if(isNaN(base))return null;
+  const d=new Date(base.getFullYear(),base.getMonth(),base.getDate());
+  const today=new Date(); today.setHours(0,0,0,0);
+  while(d<today){
+    if(item.frequency==='weekly') d.setDate(d.getDate()+7);
+    else if(item.frequency==='yearly') d.setFullYear(d.getFullYear()+1);
+    else d.setMonth(d.getMonth()+1);
+  }
+  return d;
+}
+function recurringDueLabel(item){
+  const d=nextOccurrence(item); if(!d)return '';
+  return d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+}
+function recurringStatus(item){
+  const d=nextOccurrence(item); if(!d)return '';
+  const today=new Date();today.setHours(0,0,0,0);
+  const diff=Math.round((d-today)/86400000);
+  if(diff<0)return '<span class="badge overdue">Overdue</span>';
+  if(diff<=7)return '<span class="badge due-soon">Due soon</span>';
+  return '<span class="badge on-track">Upcoming</span>';
+}
+
+/* Automatically record due recurring items once per day, without duplicates. */
+function processRecurring(){
+  if(!Array.isArray(data.recurring))data.recurring=[];
+  if(!Array.isArray(data.transactions))data.transactions=[];
+  const today=new Date(); today.setHours(0,0,0,0);
+  let changed=false;
+  data.recurring.forEach(item=>{
+    if(!item || !item.amount || !item.nextDate)return;
+    if(item.lastProcessed===today.toISOString().slice(0,10))return;
+    let due=new Date(item.nextDate+'T00:00:00');
+    if(isNaN(due))return;
+    due.setHours(0,0,0,0);
+    if(due>today)return;
+    const dueKey=(item.id||item.description||'')+'|'+due.toISOString().slice(0,10);
+    const exists=data.transactions.some(t=>t.recurringKey===dueKey);
+    if(!exists){
+      data.transactions.push({
+        id:Date.now()+Math.floor(Math.random()*10000),
+        type:item.type||'expense',
+        description:item.description||'Recurring',
+        amount:Number(item.amount)||0,
+        category:item.category||'Other',
+        date:due.toISOString().slice(0,10),
+        payment:item.payment||'',
+        note:'Automatically added from recurring transaction',
+        recurringKey:dueKey
+      });
+      changed=true;
+    }
+    while(due<=today){
+      if(item.frequency==='weekly')due.setDate(due.getDate()+7);
+      else if(item.frequency==='yearly')due.setFullYear(due.getFullYear()+1);
+      else due.setMonth(due.getMonth()+1);
+    }
+    item.nextDate=due.toISOString().slice(0,10);
+    item.lastProcessed=today.toISOString().slice(0,10);
+    changed=true;
+  });
+  if(changed)localStorage.setItem(KEY,JSON.stringify(data));
+}
+try{processRecurring()}catch(e){console.warn('Recurring processing skipped',e)}
+
 </script>
+<div id="toast" class="toast"></div>
 </body></html>
