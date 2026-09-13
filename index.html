@@ -149,7 +149,7 @@ function renderDashboard(){
  projection.textContent=money(proj);projectedSurplus.textContent=money(t.income-proj);
  const prev=new Date();prev.setMonth(prev.getMonth()-1);const pk=monthKey(prev),p=totals(pk);
  monthChange.textContent=p.spend?'Spending vs last month: '+(t.spend-p.spend>=0?'+':'')+money(t.spend-p.spend):'No previous-month spending data yet.';
- goalPreview.innerHTML=data.goals.length?data.goals.slice(0,2).map(g=>goalHTML(g)).join(''):'<p class="muted">No goals yet. <button class="linkbtn" onclick="show('goals')">Create one</button></p>';
+ goalPreview.innerHTML=data.goals.length?data.goals.slice(0,2).map(g=>goalHTML(g)).join(''):`<p class="muted">No goals yet. <button class="linkbtn" onclick="show('goals')">Create one</button></p>`;
 }
 function goalHTML(g){
  const pct=Math.min(100,g.target?g.saved/g.target*100:0);
