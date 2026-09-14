@@ -321,7 +321,7 @@ input,select,textarea{background:#081728!important;color:var(--mm-text)!importan
   <div class="hero-share">
     <div class="mm-logo">M</div>
     <h1>My Money</h1>
-    <p>Share Edition · Version 2.1</p>
+    <p>Share Edition · Version 2.1.1</p>
   </div>
   <div class="card">
     <h2>What's included</h2>
@@ -347,7 +347,7 @@ input,select,textarea{background:#081728!important;color:var(--mm-text)!importan
     <h2>Everything in one place</h2>
     <p class="muted">Access goals, recurring payments, history, backups and settings.</p>
     <div class="more-grid">
-      <button class="card more-card" onclick="show('goals')"><div class="mi">🎯</div><div class="mt">Goals</div><div class="ms">Track savings targets</div></button>
+      <button class="card more-card" onclick="show(&quot;goals&quot;)"><div class="mi">🎯</div><div class="mt">Goals</div><div class="ms">Track savings targets</div></button>
       <button class="card more-card" onclick="show('accounts')"><div class="mi">🏦</div><div class="mt">Accounts</div><div class="ms">Cash, banks & savings</div></button>
       <button class="card more-card" onclick="show('reports')"><div class="mi">📈</div><div class="mt">Reports</div><div class="ms">Cash flow & net worth</div></button>
       <button class="card more-card" onclick="show('profile')"><div class="mi">👤</div><div class="mt">My Profile</div><div class="ms">Name & currency</div></button>
@@ -355,7 +355,7 @@ input,select,textarea{background:#081728!important;color:var(--mm-text)!importan
 
       <button class="card more-card" onclick="show('debts')"><div class="mi">💳</div><div class="mt">Debt</div><div class="ms">Loans & balances</div></button>
 
-      <button class="card more-card" onclick="show('budgets')"><div class="mi">📊</div><div class="mt">Budgets</div><div class="ms">Overall & category limits</div></button>
+      <button class="card more-card" onclick="show(&quot;budgets&quot;)"><div class="mi">📊</div><div class="mt">Budgets</div><div class="ms">Overall & category limits</div></button>
 
       <button class="card more-card" onclick="show('recurring')"><div class="mi">🔁</div><div class="mt">Recurring</div><div class="ms">Bills & regular income</div></button>
       <button class="card more-card" onclick="show('history')"><div class="mi">📅</div><div class="mt">History</div><div class="ms">Monthly breakdowns</div></button>
@@ -378,8 +378,8 @@ input,select,textarea{background:#081728!important;color:var(--mm-text)!importan
   </div>
 
   <div class="card">
-    <h2>V2.1</h2>
-    <p class="muted">Navigation, recurring automation, backup & restore, dashboard improvements and interface polish.</p>
+    <h2>V2.1.1</h2>
+    <p class="muted">Reliability fixes, dashboard updates, recurring transactions, budgets, backup & restore and interface polish.</p>
   </div>
 </section>
 
@@ -387,7 +387,7 @@ input,select,textarea{background:#081728!important;color:var(--mm-text)!importan
 <div class="section-title">Settings</div>
 <div class="card"><b>Monthly budget</b><input id="budgetInput" class="input" type="number" placeholder="GYD"><button class="btn" onclick="saveBudget()">Save budget</button></div>
 <div class="card"><b>Data</b><p class="muted">Your data stays on this device/browser.</p><button class="btn secondary" onclick="exportData()">Export backup</button> <button class="btn danger" onclick="deleteData()">Delete all data</button></div>
-<div class="card"><b>About</b><p>My Money — Version 1.2</p><p class="muted">Local-only personal finance tracker.</p></div>
+<div class="card"><b>About</b><p>My Money — Share Edition Version 2.1.1</p><p class="muted">Local-only personal finance tracker.</p></div>
 
   <div class="card">
     <h2>App Lock</h2>
@@ -497,7 +497,7 @@ function renderDashboard(){
  projection.textContent=money(proj);projectedSurplus.textContent=money(t.income-proj);
  const prev=new Date();prev.setMonth(prev.getMonth()-1);const pk=monthKey(prev),p=totals(pk);
  monthChange.textContent=p.spend?'Spending vs last month: '+(t.spend-p.spend>=0?'+':'')+money(t.spend-p.spend):'No previous-month spending data yet.';
- goalPreview.innerHTML=data.goals.length?data.goals.slice(0,2).map(g=>goalHTML(g)).join(''):`<p class="muted">No goals yet. <button class="linkbtn" onclick="show('goals')">Create one</button></p>`;
+ goalPreview.innerHTML=data.goals.length?data.goals.slice(0,2).map(g=>goalHTML(g)).join(''):`<p class="muted">No goals yet. <button class="linkbtn" onclick="show(&quot;goals&quot;)">Create one</button></p>`;
 }
 function goalHTML(g){
  const pct=Math.min(100,g.target?g.saved/g.target*100:0);
@@ -701,9 +701,9 @@ function processRecurring(){
   const today=new Date(); today.setHours(0,0,0,0);
   let changed=false;
   data.recurring.forEach(item=>{
-    if(!item || !item.amount || !item.nextDate)return;
+    if(!item || !item.amount || !(item.nextDate||item.date))return;
     if(item.lastProcessed===today.toISOString().slice(0,10))return;
-    let due=new Date(item.nextDate+'T00:00:00');
+    let due=new Date((item.nextDate||item.date)+'T00:00:00');
     if(isNaN(due))return;
     due.setHours(0,0,0,0);
     if(due>today)return;
@@ -713,11 +713,11 @@ function processRecurring(){
       data.transactions.push({
         id:Date.now()+Math.floor(Math.random()*10000),
         type:item.type||'expense',
-        description:item.description||'Recurring',
+        description:item.description||item.name||'Recurring',
         amount:Number(item.amount)||0,
         category:item.category||'Other',
         date:due.toISOString().slice(0,10),
-        payment:item.payment||'',
+        payment:item.payment||item.method||'',
         note:'Automatically added from recurring transaction',
         recurringKey:dueKey
       });
@@ -729,6 +729,7 @@ function processRecurring(){
       else due.setMonth(due.getMonth()+1);
     }
     item.nextDate=due.toISOString().slice(0,10);
+     item.date=item.nextDate;
     item.lastProcessed=today.toISOString().slice(0,10);
     changed=true;
   });
@@ -1106,7 +1107,7 @@ function v21RenderDashboard(){
   if(gp){
     const goals=Array.isArray(data.goals)?data.goals:[];
     if(!goals.length){
-      gp.innerHTML='<div class="v21-empty">No financial goals yet. <button class="linkbtn" onclick="show(\\'goals\\')">Create a goal</button></div>';
+      gp.innerHTML='<div class="v21-empty">No financial goals yet. <button class="linkbtn" onclick="show(&quot;goals&quot;)">Create a goal</button></div>';
     }else{
       gp.innerHTML=goals.slice(0,3).map(g=>goalHTML(g)).join('')+
         (goals.length>3?'<div class="v21-small">Showing your first 3 goals.</div>':'');
@@ -1129,7 +1130,7 @@ function v21RenderDashboard(){
   if(box){
     const bs=Array.isArray(data.budgets)?data.budgets:[];
     if(!bs.length){
-      box.innerHTML='No category budgets set. <button class="linkbtn" onclick="show(\\'budgets\\')">Add category budgets</button>';
+      box.innerHTML='No category budgets set. <button class="linkbtn" onclick="show(&quot;budgets&quot;)">Add category budgets</button>';
     }else{
       box.innerHTML=bs.slice(0,3).map(b=>{
         const sp=categorySpent(b.category), lim=Number(b.amount)||0;
